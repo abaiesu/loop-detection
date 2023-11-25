@@ -19,6 +19,7 @@ Detects loops in a network from its forwarding tables
 - TODO
 - Modif test
 - New test
+- More tests
 
 ## Credits
 
