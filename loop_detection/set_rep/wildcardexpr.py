@@ -6,10 +6,10 @@ baies.antonia@gmail.com
 This file is part of Loop Detection.
 """
 
-
-from rule import Rule
 import re
 import math
+
+from loop_detection.set_rep.rule import Rule
 
 
 class WildcardExpr(Rule):
@@ -140,4 +140,3 @@ class WildcardExpr(Rule):
         pattern = self.expr.replace('*', '.')
         regex = re.compile(pattern)
         return bool(regex.fullmatch(string_to_check))
-

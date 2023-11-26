@@ -6,9 +6,9 @@ baies.antonia@gmail.com
 This file is part of Loop Detection.
 """
 
-from rule import Rule
-from wildcardexpr import WildcardExpr
 
+from loop_detection.set_rep.rule import Rule
+from loop_detection.set_rep.wildcardexpr import WildcardExpr
 
 class Range(Rule):
     """

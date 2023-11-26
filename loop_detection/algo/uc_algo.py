@@ -6,7 +6,8 @@ baies.antonia@gmail.com
 This file is part of Loop Detection.
 """
 
-from combination import Combination
+from loop_detection.algo.combination import Combination
+from loop_detection.set_rep.range import Range
 
 
 def add_rule(r, UC):
@@ -113,7 +114,8 @@ def get_UC(R):
         >>> r2 = Range((1, 5))
         >>> h = Range((0, 7))
         >>> rules = [('h', h), ('r1',r1), ('r2', r2)]
-        >>> uncovered_combinations = get_UC(rules)
+        >>> get_UC(rules)
+        {[0, 7], [0, 4], [1, 4], [1, 5]}
 
     """
 

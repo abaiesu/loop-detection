@@ -6,9 +6,8 @@ baies.antonia@gmail.com
 This file is part of Loop Detection.
 """
 
-from rule import Rule
-from range import Range
-import math
+from loop_detection.set_rep.rule import Rule
+from loop_detection.set_rep.range import Range
 
 
 class MultiField(Rule):

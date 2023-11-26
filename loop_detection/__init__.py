@@ -5,6 +5,9 @@ __email__ = 'baies.antonia@gmail.com'
 __version__ = '0.1.0'
 
 
-from loop_detection.sub_package_1.my_class_1 import MyClass1
-from loop_detection.sub_package_2.my_class_2 import MyClass2
-from loop_detection.sub_package_2.my_class_3 import MyClass3
+from loop_detection.set_rep.rule import Rule
+from loop_detection.set_rep.range import Range
+from loop_detection.set_rep.wildcardexpr import WildcardExpr
+from loop_detection.set_rep.multifield import MultiField
+
+from loop_detection.algo.uc_algo import get_UC

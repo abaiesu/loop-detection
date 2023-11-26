@@ -1,5 +1,4 @@
 import networkx as nx
-from algo.uc_algo import get_UC
 
 
 def get_rule_set(fw_tables):

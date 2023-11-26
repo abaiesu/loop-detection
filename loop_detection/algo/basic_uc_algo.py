@@ -6,7 +6,7 @@ baies.antonia@gmail.com
 This file is part of Loop Detection.
 """
 
-from combination import Combination
+from loop_detection.algo.combination import Combination
 
 
 def basic_add_rule(r, UC):
