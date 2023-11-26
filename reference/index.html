@@ -42,8 +42,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/index';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="MyClass1" href="my_class_1.html" />
-    <link rel="prev" title="Second tutorial" href="../tutorials/answer.html" />
+    <link rel="next" title="Range" href="range.html" />
+    <link rel="prev" title="Loop Detection Tutorial" href="../tutorials/loop_tutorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -403,9 +403,11 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="my_class_1.html">MyClass1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="my_class_2.html">MyClass2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="my_class_3.html">MyClass3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="range.html">Range</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wildcardexpr.html">WildcardExpr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multifield.html">MultiField</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get_uc.html">get_UC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loop_detection.html">loop_detection</a></li>
 </ul>
 </div>
 </nav></div>
@@ -464,31 +466,52 @@ document.write(`
 <h1>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="my_class_1.html">MyClass1</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="my_class_1.html#loop_detection.MyClass1"><code class="docutils literal notranslate"><span class="pre">MyClass1</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="my_class_1.html#loop_detection.MyClass1.my_string"><code class="docutils literal notranslate"><span class="pre">MyClass1.my_string</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="my_class_1.html#loop_detection.MyClass1.A_NICE_CONSTANT"><code class="docutils literal notranslate"><span class="pre">MyClass1.A_NICE_CONSTANT</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="my_class_1.html#loop_detection.MyClass1.A_VERY_NICE_CONSTANT"><code class="docutils literal notranslate"><span class="pre">MyClass1.A_VERY_NICE_CONSTANT</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="my_class_1.html#loop_detection.MyClass1.a_square"><code class="docutils literal notranslate"><span class="pre">MyClass1.a_square</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="my_class_1.html#loop_detection.MyClass1.addition"><code class="docutils literal notranslate"><span class="pre">MyClass1.addition()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="my_class_1.html#loop_detection.MyClass1.divide_a_by_c_and_add_d"><code class="docutils literal notranslate"><span class="pre">MyClass1.divide_a_by_c_and_add_d()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="my_class_1.html#loop_detection.MyClass1.update_b_from_class_2"><code class="docutils literal notranslate"><span class="pre">MyClass1.update_b_from_class_2()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="range.html">Range</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="range.html#loop_detection.Range"><code class="docutils literal notranslate"><span class="pre">Range</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.start"><code class="docutils literal notranslate"><span class="pre">Range.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.end"><code class="docutils literal notranslate"><span class="pre">Range.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.max_card"><code class="docutils literal notranslate"><span class="pre">Range.max_card</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.card"><code class="docutils literal notranslate"><span class="pre">Range.card</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.empty_flag"><code class="docutils literal notranslate"><span class="pre">Range.empty_flag</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.field"><code class="docutils literal notranslate"><span class="pre">Range.field</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.__and__"><code class="docutils literal notranslate"><span class="pre">Range.__and__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.__lt__"><code class="docutils literal notranslate"><span class="pre">Range.__lt__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="range.html#loop_detection.Range.union"><code class="docutils literal notranslate"><span class="pre">Range.union()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="my_class_2.html">MyClass2</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="my_class_2.html#loop_detection.MyClass2"><code class="docutils literal notranslate"><span class="pre">MyClass2</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="my_class_2.html#loop_detection.MyClass2.addition"><code class="docutils literal notranslate"><span class="pre">MyClass2.addition()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="wildcardexpr.html">WildcardExpr</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr"><code class="docutils literal notranslate"><span class="pre">WildcardExpr</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr.expr"><code class="docutils literal notranslate"><span class="pre">WildcardExpr.expr</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr.max_card"><code class="docutils literal notranslate"><span class="pre">WildcardExpr.max_card</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr.card"><code class="docutils literal notranslate"><span class="pre">WildcardExpr.card</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr.empty_flag"><code class="docutils literal notranslate"><span class="pre">WildcardExpr.empty_flag</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr.field"><code class="docutils literal notranslate"><span class="pre">WildcardExpr.field</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr.__and__"><code class="docutils literal notranslate"><span class="pre">WildcardExpr.__and__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr.__lt__"><code class="docutils literal notranslate"><span class="pre">WildcardExpr.__lt__()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="my_class_3.html">MyClass3</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="my_class_3.html#loop_detection.MyClass3"><code class="docutils literal notranslate"><span class="pre">MyClass3</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="my_class_3.html#loop_detection.MyClass3.addition"><code class="docutils literal notranslate"><span class="pre">MyClass3.addition()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="multifield.html">MultiField</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multifield.html#loop_detection.MultiField"><code class="docutils literal notranslate"><span class="pre">MultiField</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="multifield.html#loop_detection.MultiField.rules"><code class="docutils literal notranslate"><span class="pre">MultiField.rules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="multifield.html#loop_detection.MultiField.card"><code class="docutils literal notranslate"><span class="pre">MultiField.card</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="multifield.html#loop_detection.MultiField.empty_flag"><code class="docutils literal notranslate"><span class="pre">MultiField.empty_flag</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="multifield.html#loop_detection.MultiField.__and__"><code class="docutils literal notranslate"><span class="pre">MultiField.__and__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="multifield.html#loop_detection.MultiField.__lt__"><code class="docutils literal notranslate"><span class="pre">MultiField.__lt__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="multifield.html#loop_detection.MultiField.pretty_print"><code class="docutils literal notranslate"><span class="pre">MultiField.pretty_print()</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="get_uc.html">get_UC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="get_uc.html#loop_detection.get_UC"><code class="docutils literal notranslate"><span class="pre">get_UC()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="loop_detection.html">loop_detection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="loop_detection.html#loop_detection.loop_detection"><code class="docutils literal notranslate"><span class="pre">loop_detection()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -506,20 +529,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../tutorials/answer.html"
+       href="../tutorials/loop_tutorial.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Second tutorial</p>
+        <p class="prev-next-title">Loop Detection Tutorial</p>
       </div>
     </a>
     <a class="right-next"
-       href="my_class_1.html"
+       href="range.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">MyClass1</p>
+        <p class="prev-next-title">Range</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
