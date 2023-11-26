@@ -16,30 +16,35 @@ class WildcardExpr(Rule):
     """
     Class for wildcard expression rule representation
 
-    Attributes
+    Parameters
     ----------
     string : str
-        string on the characters : {0, 1, *}
-        valid example : 1*001
-        invalid example : 1.021
+        string on the alphabet : {0, 1, \* }
     max_card : int, default = infinity
-    field : None
+        maximum cardinality of the rule
+    field : str, default = None
+        string for the name of the rule (IP source, port range...)
+
+    Attributes
+    ----------
+    expr : str
+        Wildcard expression of the rule
+    max_card : int
+    card : int
+        cardinality of the rule
+    empty_flag : int
+        1 if the rule is empty, 0 otherwise
+    field : str
 
     Examples
     --------
         >>> r1 = WildcardExpr("*10*")
         >>> r2 = WildcardExpr("*1*1")
-        >>> r1 & r2
-        *101
-        >>> WildcardExpr('*101') < r1
-        True
-        >>> r1.get_card()
-        4
 
     """
 
     def __init__(self, string, max_card=float('inf'), field=None):
-        super().__init__(string, max_card, field)
+        super().__init__(max_card, field)
         self.expr = string
         if string is not None:
             pattern = r'[^01*]'
@@ -54,6 +59,8 @@ class WildcardExpr(Rule):
             else:
                 card = max_card
             self.card = card
+        else:
+            self.empty_flag = 1
 
     def __repr__(self):
         return self.expr if self.expr is not None else '∅'
@@ -70,6 +77,13 @@ class WildcardExpr(Rule):
         Returns
         -------
         bool
+
+        Examples
+        --------
+            >>> r1 = WildcardExpr("*10*")
+            >>> r2 = WildcardExpr("*1**")
+            >>> r1 < r2
+            True
         """
 
         for i in range(len(self.expr)):
@@ -97,6 +111,12 @@ class WildcardExpr(Rule):
         -------
         WildcardExpr
 
+        Examples
+        --------
+            >>> r1 = WildcardExpr("*10*")
+            >>> r2 = WildcardExpr("*1*1")
+            >>> r1 & r2
+            *101
         """
 
         if self.empty_flag | other.empty_flag:  # one of the sets is empty

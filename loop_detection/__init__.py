@@ -9,5 +9,5 @@ from loop_detection.set_rep.rule import Rule
 from loop_detection.set_rep.range import Range
 from loop_detection.set_rep.wildcardexpr import WildcardExpr
 from loop_detection.set_rep.multifield import MultiField
-
 from loop_detection.algo.uc_algo import get_UC
+from loop_detection.loop_detection_code import loop_detection

@@ -6,53 +6,53 @@ baies.antonia@gmail.com
 This file is part of Loop Detection.
 """
 
-
 from loop_detection.set_rep.rule import Rule
 from loop_detection.set_rep.wildcardexpr import WildcardExpr
+
 
 class Range(Rule):
     """
     Class for range rule representation
 
+    Parameters
+    ----------
+    start : int
+        start of the range (included)
+    end : int
+        end of the range (included)
+    max_card : int, default = infinity
+        maximum cardinality of the rule
+    field : str, default = None
+        string for the name of the rule (IP source, port range...)
+
     Attributes
     ----------
-    pair : tuple
-        format = (start, end)
-        start and end are both included
-        valid example : (5, 7)
-        invalid example : (7, 5)
-    max_card : int, default = infinity
-    field : None
+    start : int
+    end : int
+    max_card : int
+    card : int
+        cardinality of the rule
+    empty_flag : int
+        1 if the rule is empty, 0 otherwise
+    field : str
 
     Examples
     --------
-        >>> r1 = Range((1,7))
-        >>> r2 = Range((0,4))
-        >>> Range((2, 4)) < r1
-        True
-        >>> r1.get_card()
-        7
-        >>> r3 = Range((8,9))
-        >>> r1.union(r3)
-        [1, 9]
-        >>> r4 = Range((9, 10))
-        >>> r1.union(r4) is None
-        True
-
+        >>> r1 = Range(1,7)
+        >>> r2 = Range(0,4)
     """
 
-    def __init__(self, pair, max_card=float('inf'), field=None):
-        super().__init__(pair, max_card, field)
-        if pair is not None:
-            start, end = pair[0], pair[1]
-            if start > end or end > max_card - 1:  # the highest address is max_card - 1
+    def __init__(self, start, end, max_card=float('inf'), field=None):
+        super().__init__(max_card, field)
+        self.start = start
+        self.end = end
+        if self.start is not None and self.start is not None:
+            if self.start > self.start or self.start > self.max_card - 1:  # the highest address is max_card - 1
+                self.empty_flag = 1
                 raise ValueError("Incorrect range")
-            self.start = start
-            self.end = end
             self.card = self.end - self.start + 1 if not self.empty_flag else 0
         else:
-            self.start = None
-            self.end = None
+            self.empty_flag = 1
 
     def __repr__(self):
         return f'[{self.start}, {self.end}]' if not self.empty_flag else '∅'
@@ -72,25 +72,33 @@ class Range(Rule):
 
         Parameters
         ---------
-        other : Range OR WildcardExpr = '*' (other WildcardExpr instances not allowed)
+        other : Range OR WildcardExpr
+            Accepts any Range but only WildcardExpr if the expr is exaclty \*
 
         Returns
         -------
         Range
 
+        Examples
+        --------
+            >>> r1 = Range(1,7)
+            >>> r2 = Range(0,4)
+            >>> r1 & r2
+            [1, 4]
+
         """
 
         if self.empty_flag | other.empty_flag:  # one of the sets is empty
-            return Range(None)
+            return Range(None, None)
         if isinstance(other, WildcardExpr) and other.expr == '*':  # the other expression matches it all
             return self
         if other.start > self.end:  # starts too late
-            return Range(None)
+            return Range(None, None)
         if other.end < self.start:  # finishes too early
-            return Range(None)
+            return Range(None, None)
         start = max(self.start, other.start)
         end = min(self.end, other.end)
-        return Range((start, end))
+        return Range(start, end)
 
     def __lt__(self, other):
 
@@ -104,12 +112,19 @@ class Range(Rule):
         Returns
         -------
         bool
+
+        Examples
+        --------
+            >>> r1 = Range(1,7)
+            >>> r2 = Range(2,4)
+            >>> r2 < r1
+            True
         """
 
         if other.empty_flag:  # nothing is included in the empty set
             return False
 
-        if isinstance(other, WildcardExpr) and other.string == '*':  # other accepts it all
+        if isinstance(other, WildcardExpr) and other.expr == '*':  # other accepts it all
             return True
 
         if other.start <= self.start and other.end >= self.end:
@@ -131,6 +146,20 @@ class Range(Rule):
         ----------
         other : Range
 
+        Returns
+        -------
+        Range or None
+
+        Examples
+        --------
+            >>> r1 = Range(1,7)
+            >>> r2 = Range(8,10)
+            >>> r1.union(r2)
+            [1, 10]
+            >>> r3 = Range(9, 10)
+            >>> r1.union(r3) is None
+            True
+
         """
 
         if other.start > self.end + 1:  # starts too late = there is a gap
@@ -139,4 +168,4 @@ class Range(Rule):
             return None
         start = min(self.start, other.start)
         end = max(self.end, other.end)
-        return Range((start, end))
+        return Range(start, end)

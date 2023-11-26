@@ -9,23 +9,11 @@ This file is part of Loop Detection.
 
 class Rule:
     """
-    Superclass for all the rules : Range, WildcardExpr, Multifields
-
-    Parameters
-    ----------
-    rule : tuple OR str
-        tuple if Range
-        str if WildcardExpr
-    max_card : int
-        maximum cardinality of a rule
-        in the context of forwarding rules, is used to retrieve the base rule
-    field : str
-        string for the name of the rule (IP source, port range...)
-
+    Abstract class for all the rules : Range, WildcardExpr, MultiField
     """
 
-    def __init__(self, rule, max_card, field):
-        self.empty_flag = 1 if rule is None else 0
+    def __init__(self, max_card, field):
+        self.empty_flag = 0
         self.field = field
         self.max_card = max_card
         self.card = 0

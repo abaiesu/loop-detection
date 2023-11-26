@@ -95,27 +95,29 @@ def add_rule(r, UC):
 
 
 def get_UC(R):
-    """"
+    """
     Returns the set of uncovered combinations using the algorithm with the best complexity (add_rule)
 
     Parameters
     ----------
     R : array-like
-        list/set of tuples : (str, Rule)
+        list/set of tuples of the form : (str, Rule)
 
     Returns
     -------
     set
         set of Combination instances
 
-     Examples
+    Examples
     --------
-        >>> r1 = Range((0, 4))
-        >>> r2 = Range((1, 5))
-        >>> h = Range((0, 7))
+        >>> r1 = Range(0, 4)
+        >>> r2 = Range(1, 5)
+        >>> h = Range(0, 7)
         >>> rules = [('h', h), ('r1',r1), ('r2', r2)]
         >>> get_UC(rules)
         {[0, 7], [0, 4], [1, 4], [1, 5]}
+        >>> [uc.get_name() for uc in get_UC(rules)]
+        ['h', 'h & r1', 'h & r1 & r2', 'h & r2']
 
     """
 

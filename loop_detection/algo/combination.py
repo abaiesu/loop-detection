@@ -6,25 +6,50 @@ baies.antonia@gmail.com
 This file is part of Loop Detection.
 """
 
+from loop_detection.set_rep.range import Range
+
 
 class Combination:
     """
     Class used for the atom computation in get_UC_basic and get_UC
+    Represents a combination of rules
 
-    Attributes
+    Parameters
     ----------
     r : Rule
         rule followed by the combination
-
     comp : list, default = []
-        list of rules which compose the combination
+        list of the name of rules which compose the combination
+
+    Attributes
+    ----------
+    rule : Rule
+    sup : set
+        set of combinations that include the rule of the combination
+    cont : set
+        set of rules that contain the rule of the combination
+    atsize : int
+        size of the atom representated by the combination
+    parent : Combination
+        smallest combination such that self & parent is non empty
+    covered: bool
+    comp : list
+
+    Examples
+    --------
+    >>> r1 = Range(1, 10)
+    >>> r2 = Range(2, 12)
+    >>> combi1 = Combination(r1, ['r1'])
+    >>> combi2 = Combination(r2, ['r2'])
+    >>> (combi1 & combi2).get_name()
+    'r1 & r2'
 
     """
 
     def __init__(self, r, comp=[]):
         self.rule = r
-        self.sup = set()  # list of combinations that include r
-        self.cont = set()  # list of rules that contain r
+        self.sup = set()  # set of combinations that include r
+        self.cont = set()  # set of rules that contain r
         self.atsize = r.get_card()
         self.parent = None  # smallest combination such that self & parent is non empty
         self.covered = False

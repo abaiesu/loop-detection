@@ -5,5 +5,4 @@ Tutorials
 =========
 
 .. toctree::
-   tutorial
-   answer
+   loop_tutorial

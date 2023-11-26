@@ -8,38 +8,43 @@ This file is part of Loop Detection.
 
 from loop_detection.set_rep.rule import Rule
 from loop_detection.set_rep.range import Range
+from loop_detection.set_rep.wildcardexpr import WildcardExpr
 
 
 class MultiField(Rule):
     """
     Class for multifield rule representation (n-tuples)
 
+    Parameters
+    ----------
+    rules : list
+        list of rules for each field, can be Range or WildcardExpr instances
+
     Attributes
     ----------
     rules : list
-        list of rules for each field
-        items can be Range or WildcardExpr instances
+    card : int
+        cardinality of the rule
+    empty_flag : int
+        1 if the rule is empty, 0 otherwise
 
     Examples
     --------
-        >>> r1 = MultiField([Range((10, 20)), Range((1, 3))])
-        >>> r2 = MultiField([Range((5, 15)), Range((1, 1))])
-        >>> r1 & r2
-        [10, 15], [1, 1]
-        >>> MultiField([Range((10, 15)), Range((1, 1))]) < r1
-        True
-        >>> r1.get_card()
-        33
+        >>> r1 = MultiField([Range(10, 20), Range(1, 3)])
+        >>> r2 = MultiField([Range(5, 15), WildcardExpr("0**1")])
 
     """
 
     def __init__(self, rules):
-        super().__init__(rules, float('inf'), field=None)
+        super().__init__(float('inf'), None)
         self.rules = rules  # rules is a list of Rule instances
         if rules is not None:
             for rule in rules:
                 if rule.empty_flag:
                     self.empty_flag = 1
+        else:
+            self.empty_flag = 1
+
         if not self.empty_flag:
             result = 1
             for rule in self.rules:
@@ -72,6 +77,17 @@ class MultiField(Rule):
         Parameters
         ---------
         other : MultiField
+
+        Returns
+        -------
+        MultiField
+
+        Examples
+        --------
+            >>> r1 = MultiField([Range(10, 20), Range(1, 3)])
+            >>> r2 = MultiField([Range(5, 15), Range(1, 1)])
+            >>> r1 & r2
+            [10, 15], [1, 1]
         """
 
         if self.empty_flag | other.empty_flag:  # one of the sets is empty
@@ -96,6 +112,13 @@ class MultiField(Rule):
         Returns
         -------
         bool
+
+        Examples
+        --------
+            >>> r1 = MultiField([Range(10, 20), Range(1, 3)])
+            >>> r2 = MultiField([Range(13, 15), Range(1, 1)])
+            >>> r2 < r1
+            True
         """
 
         bools = [rule1 < rule2 for rule1, rule2 in zip(self.rules, other.rules)]

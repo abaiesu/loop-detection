@@ -1,4 +1,8 @@
 import networkx as nx
+import matplotlib.pyplot as plt
+
+from loop_detection.algo.uc_algo import get_UC
+from loop_detection.set_rep.range import Range
 
 
 def get_rule_set(fw_tables):
@@ -113,25 +117,37 @@ def cycles_detection(UC, rule_set, aliases, early_stop=False):
 
 def loop_detection(fw_tables, early_stop=False):
     """
-    Detects loops in the network detected by the input forwarding table
+    Detects loops in a network from its forwarding tables
 
     Parameters
     ----------
     fw_tables : dict
-        keys = name of the node/router
-        values = list of the rules present at the node
-        the rules are in the following format : (name : str, rule : Rule, action = None or name of the destination)
+        the keys of the dictionary are the names of the nodes/routers
+
+        the values are the list of the rules present at the key node
+
+        the rules are in the following format : (name : str, rule : Rule, action = None or name of the destination node)
     early_stop : bool, default = False
-        whether you want to stop at the first cycle encountered (True) or you want all the cycles (False)
+        whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)
 
     Returns
     -------
     list
-        the items of the list are tuples of the form (atom : Combination, list of cycles)
+        the items of the list are tuples of the form (atom : Combination, list of cycles) |
         the cycles are lists with all the nodes involved
 
         if early_stop == True, the returned value will be a list of length 1 with the first cycle encountered
 
+    Examples
+    --------
+
+    >>> example_tables = {i : [] for i in range(4)}
+    >>> example_tables[0] = [('R1', Range(1,5), 1), ('R2', Range(1,4), 1), ('R3', Range(0,1), None), ('H0', Range(0,5), None)]
+    >>> example_tables[1] =  [('R4', Range(2,4), 3), ('H1', Range(0,5), None)]
+    >>> example_tables[2] = [('R5', Range(0, 4), 3), ('H2', Range(0,5), None)]
+    >>> example_tables[3] =  [('R5', Range(2,3), 1), ('R6', Range(4, 5), None), ('H3', Range(0,5), None)]
+    >>> len(loop_detection(example_tables)) > 0
+    True
     """
 
     rule_set = get_rule_set(fw_tables)
