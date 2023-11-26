@@ -12,18 +12,20 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
+matplotlib = "^3.8.2"
+networkx = "^3.2.1"
 
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
 pytest-cov = "^4.1.0"
-mypy = "^1.6.1"
+mypy = "^1.7.1"
 pre-commit = "^3.5.0"
 tox = "^4.11.3"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = "^7.2.6"
-ipython = "^8.17.2"
+ipython = "^8.18.0"
 nbsphinx = "^0.9.3"
 sphinx-mdinclude = "^0.5.3"
 pydata-sphinx-theme = "^0.14.3"
