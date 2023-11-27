@@ -1,5 +1,4 @@
 from loop_detection import WildcardExpr, Range, MultiField
-import pytest
 
 
 ############################ TEST RANGE CLASS #################################
@@ -28,10 +27,10 @@ def test_range_operations():
     assert (r2 & r3).get_card() == 0
 
     # test inclusion
-    assert r5 < r1 == False
+    assert (r5 < r1) == False
     r6 = Range(0, 100)
-    assert r5 < r6 == True
-    assert r6 < r6 == True
+    assert (r5 < r6) == True
+    assert (r6 < r6) == True
 
 
 ############################ TEST WILDCARD CLASS #################################
@@ -65,8 +64,8 @@ def test_wildcard_operations():
     assert expr.get_card() == 2 ** 3
 
     # test inclusion
-    assert expr1 < expr2 == False
-    assert expr < expr1 == True
+    assert (expr1 < expr2) == False
+    assert (expr1 < expr) == True
 
 
 ############################ TEST MULTIRANGE CLASS #################################
@@ -77,7 +76,7 @@ def test_multifield_operations():
     mr = MultiField(rules1)
     assert mr.is_member((15, 1)) is True
     assert mr.is_member((5, 2)) is False
-    rules = [Range((10, 20)), WildcardExpr("01*1")]
+    rules = [Range(10, 20), WildcardExpr("01*1")]
     mr = MultiField(rules)
     assert mr.is_member((15, "0111")) is True
     assert mr.is_member((5, "0100")) is False
@@ -107,7 +106,7 @@ def test_multifield_operations():
     rules2 = [Range(15, 20), Range(10, 10)]
     mr1 = MultiField(rules1)
     mr2 = MultiField(rules2)
-    assert mr2 < mr1 is True
-    assert mr1 < mr2 is False
-    assert mr1 < mr1 is True
+    assert (mr2 < mr1) is True
+    assert (mr1 < mr2) is False
+    assert (mr1 < mr1) is True
 
