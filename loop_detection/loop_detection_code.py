@@ -54,14 +54,14 @@ def get_rule_set(fw_tables: Dict[NodeName, List[Tuple[str, Rule, Action]]]) -> D
 
     rule_set: Dict[str, Tuple[NodeName, Rule, Action]] = {}
     for node, rules in fw_tables.items():
-        for i, rule in enumerate(rules):
+        for rule in rules:
             if rule[0] in rule_set.keys():  # the name of the rule already exists in the rule set
                 raise ValueError(f"The rule {rule[0]} already exists in node {rule_set[rule[0]][0]}")
             rule_set[rule[0]] = (node, rule[1], rule[2])
     return rule_set
 
 
-def get_aliases(rule_set: Dict[NodeName, Tuple[str, Rule, Action]]) -> Dict[Rule, Set[str]]:
+def get_aliases(rule_set: Dict[str, Tuple[str, Rule, Action]]) -> Dict[Rule, Set[str]]:
     """
     Gets the dict of all names of a given rule
 
@@ -89,7 +89,7 @@ def get_aliases(rule_set: Dict[NodeName, Tuple[str, Rule, Action]]) -> Dict[Rule
 
 
 def cycles_detection(UC: Set[Combination],
-                     rule_set: Dict[NodeName, Tuple[str, Rule, Action]],
+                     rule_set: Dict[str, Tuple[NodeName, Rule, Action]],
                      aliases: Dict[Rule, Set[str]],
                      early_stop: bool = False) -> List[Tuple[Combination, List[List[NodeName]]]]:
     """
