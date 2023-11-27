@@ -1,18 +1,19 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from loop_detection.algo.uc_algo import get_UC, Combination
+from loop_detection.algo.uc_algo import get_UC
+from loop_detection.algo.combination import Combination
 from loop_detection.set_rep.range import Range
 from loop_detection.set_rep.wildcardexpr import WildcardExpr
 from loop_detection.set_rep.multifield import MultiField
-from typing import Dict, List, Tuple, Set, Union, Iterable
+from typing import Dict, List, Tuple, Set, Union
 
 NodeName = Union[int, str]
 Action = Union[NodeName, None]
 Rule = Union[Range, WildcardExpr, MultiField]
 
 
-def check_same_type(collection: Iterable) -> bool:
+def check_same_type(collection: List) -> bool:
     """Checks if all the elements in the iterable are of the same type.
     In the case of Multifield rules, it checks that each corresponding field has the same type """
 
@@ -51,16 +52,16 @@ def get_rule_set(fw_tables: Dict[NodeName, List[Tuple[str, Rule, Action]]]) -> D
 
     """
 
-    rule_set = {}
+    rule_set: Dict[NodeName, Tuple[str, Rule, Action]] = {}
     for node, rules in fw_tables.items():
         for i, rule in enumerate(rules):
             if rule[0] in rule_set.keys():  # the name of the rule already exists in the rule set
                 raise ValueError(f"The rule {rule[0]} already exists in node {rule_set[rule[0]][0]}")
-            rule_set[rule[0]] = (node, rule[1], rule[2], i)
+            rule_set[rule[0]] = (node, rule[1], rule[2])
     return rule_set
 
 
-def get_aliases(rule_set: Dict[NodeName, Tuple[str, Rule, Action]]) -> Dict[Rule, str]:
+def get_aliases(rule_set: Dict[NodeName, Tuple[str, Rule, Action]]) -> Dict[Rule, Set[str]]:
     """
     Gets the dict of all names of a given rule
 
@@ -75,7 +76,7 @@ def get_aliases(rule_set: Dict[NodeName, Tuple[str, Rule, Action]]) -> Dict[Rule
         dictionary where the keys are rule values, and the values are sets of valid names : str
     """
 
-    aliases = {}
+    aliases: Dict[Rule, Set[str]] = {}
 
     for key, value in rule_set.items():
         rule_value = value[1]

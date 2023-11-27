@@ -122,7 +122,7 @@ def test3():
 
 def test4():
 
-    for _ in range(10):
+    for _ in range(20):
         n = random.randint(5, 20)
         R = create_collection_rules(n, num_fields_wc=2, num_fields_r=3)
         UC_alg = get_UC(R)

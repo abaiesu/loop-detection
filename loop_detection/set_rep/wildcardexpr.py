@@ -83,12 +83,15 @@ class WildcardExpr(Rule):
             >>> r2 = WildcardExpr("*1**")
             >>> r1 < r2
             True
+            >>> r3 = WildcardExpr("****")
+            >>> r3 < r2
+            False
         """
 
         for i in range(len(self.expr)):
             if self.expr[i] == '1' and other.expr[i] == '0' or self.expr[i] == '0' and other.expr[i] == '1':
                 return False
-            if self.expr[i] == '*' and self.expr[i] != '*':
+            if self.expr[i] == '*' and other.expr[i] != '*':
                 return False
         return True
 

@@ -17,16 +17,16 @@ Action = Union[NodeName, None]
 Rule = Union[Range, WildcardExpr, MultiField]
 
 
-def basic_add_rule(r: Rule, UC: Set[Combination]):
+def basic_add_rule(r: Combination, UC: Set[Combination]):
     """
     Adds a rule to a set of uncovered combinations and updates the set following the basic algorithm
 
     Parameters
     ----------
-    r : Rule
-        rule to add
-    UC : set
-        current set of Combination instances
+    r : Combination
+        new rule to add, wrapped with the Combination attributes
+    UC : set[Combinations]
+        current set of uncovered combinations
 
     Returns
     -------
@@ -69,7 +69,7 @@ def get_UC_basic(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
 
     """
 
-    UC = set()
+    UC: Set[Combination] = set()  # this will sort the uncovered combinations
 
     # sort R by decreasing cardinality to start by the base rule = H
     R = sorted(R, key=lambda rule: rule[1].get_card(), reverse=True)
