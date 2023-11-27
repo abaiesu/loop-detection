@@ -47,7 +47,7 @@ class Range(Rule):
         self.start = start
         self.end = end
         if self.start is not None and self.start is not None:
-            if self.start > self.start or self.start > self.max_card - 1:  # the highest address is max_card - 1
+            if self.start > self.end or (self.start > self.max_card - 1) or (self.end > self.max_card - 1):  # the highest address is max_card - 1
                 raise ValueError("Incorrect range")
             else:
                 self.empty_flag = 0

@@ -32,6 +32,10 @@ def check_same_type(collection: List) -> bool:
     if first_type != MultiField:
         return True
     else:  # for multifields, check that all the fields are of the same type
+        nb_inner_rules = len(collection[0].rules) #first check that they have the same number of fields
+        for mf in collection:
+            if len(mf.rules) != nb_inner_rules:
+                return False
         for field in range(len(collection[0].rules)):  # for each field
             fields_list = []
             for rule in collection:
