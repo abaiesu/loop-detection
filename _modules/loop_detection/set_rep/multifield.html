@@ -487,11 +487,11 @@ document.write(`
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="n">rules</span>  <span class="c1"># rules is a list of Rule instances</span>
         <span class="k">if</span> <span class="n">rules</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">count_empty_flags</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">rule</span><span class="o">.</span><span class="n">empty_flag</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">empty_flag</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">empty_flag</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">count_empty_flags</span> <span class="o">+=</span> <span class="n">rule</span><span class="o">.</span><span class="n">empty_flag</span>
+            <span class="k">if</span> <span class="n">count_empty_flags</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#if none are empty, then the multifield isn&#39;t empty</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">empty_flag</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_flag</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>

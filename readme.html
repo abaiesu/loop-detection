@@ -454,7 +454,7 @@ document.write(`
 <a class="reference external image-reference" href="https://github.com/abaiesu/loop-detection/actions?query=workflow%3Adocs"><img alt="Documentation Status" src="https://github.com/abaiesu/loop-detection/actions/workflows/docs.yml/badge.svg?branch=main" /></a>
 <a class="reference external image-reference" href="https://github.com/abaiesu/loop-detection/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/abaiesu/loop-detection" /></a>
 <a class="reference external image-reference" href="https://codecov.io/gh/abaiesu/loop-detection/tree/main"><img alt="Code Coverage" src="https://codecov.io/gh/abaiesu/loop-detection/branch/main/graphs/badge.svg" /></a>
-<p>Detects loops in a network from its forwarding tables</p>
+<p>Detects loops in a network from its forwarding tables. We use an algorithm that only requires set intersection, to avoid the increase in complexity when unions and complements are used.</p>
 <ul class="simple">
 <li><p>Free software: MIT license</p></li>
 <li><p>Documentation: <a class="reference external" href="https://abaiesu.github.io/loop-detection/">https://abaiesu.github.io/loop-detection/</a>.</p></li>
@@ -462,10 +462,9 @@ document.write(`
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>TODO</p></li>
-<li><p>Modif test</p></li>
-<li><p>New test</p></li>
-<li><p>More tests</p></li>
+<li><p>Classes for rule representation. Supported types of rules : ranges, wildcard expressions, n-tuples/multi-fields.</p></li>
+<li><p>An efficient algorithm to compute the equivalence classes of the header space from a set of rules.</p></li>
+<li><p>A loop detection function which returns the nodes and the rules involved in the network loop.</p></li>
 </ul>
 </section>
 <section id="credits">

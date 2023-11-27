@@ -614,8 +614,8 @@ document.write(`
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 5 atoms :
-H0 &amp; R1 &amp; R2 &amp; R4 &amp; R6 , value = [4, 4]
 H0 &amp; R3 , value = [0, 1]
+H0 &amp; R1 &amp; R2 &amp; R4 &amp; R6 , value = [4, 4]
 H0 &amp; R1 &amp; R2 &amp; R3 , value = [1, 1]
 H0 &amp; R1 &amp; R2 &amp; R4 &amp; R5 , value = [2, 3]
 H0 &amp; R1 &amp; R6 , value = [4, 5]
@@ -658,11 +658,11 @@ Nodes involved: {1, 3}
 </div>
 <p>Now, let’s test on a random network.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gen_fw_tables</span> <span class="o">=</span> <span class="n">generate_fw_tables</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_range</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----------------------------------------------------&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gen_fw_tables</span> <span class="o">=</span> <span class="n">generate_fw_tables</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_range</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fowarding table:&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">gen_fw_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -670,11 +670,11 @@ Nodes involved: {1, 3}
     <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Graph of the whole network&quot;</span><span class="p">)</span>
 <span class="n">print_from_fw_tables</span><span class="p">(</span><span class="n">gen_fw_tables</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">loop_detection</span><span class="p">(</span><span class="n">gen_fw_tables</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------------&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">nb_loops</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nb_loops</span><span class="p">,</span> <span class="s1">&#39;loops detected&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
@@ -695,33 +695,34 @@ Nodes involved: {1, 3}
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-----------------------------------------------------
+------------------------------------------------------------
 Fowarding table:
 
 Node 0
-(&#39;H0&#39;, [0, 10], 1)
-(&#39;R00&#39;, [6, 9], 4)
-(&#39;R10&#39;, [8, 9], 3)
+(&#39;H0&#39;, [0, 15], None)
+(&#39;R00&#39;, [11, 15], 1)
 
 Node 1
-(&#39;H1&#39;, [0, 10], None)
-(&#39;R01&#39;, [2, 7], 2)
-(&#39;R11&#39;, [3, 5], 3)
+(&#39;H1&#39;, [0, 15], None)
+(&#39;R01&#39;, [1, 14], 2)
 
 Node 2
-(&#39;H2&#39;, [0, 10], None)
-(&#39;R02&#39;, [9, 10], 1)
+(&#39;H2&#39;, [0, 15], None)
+(&#39;R02&#39;, [1, 4], 0)
+(&#39;R12&#39;, [6, 8], 0)
+(&#39;R22&#39;, [0, 1], 1)
 
 Node 3
-(&#39;H3&#39;, [0, 10], None)
-(&#39;R03&#39;, [1, 2], 4)
+(&#39;H3&#39;, [0, 15], None)
+(&#39;R03&#39;, [13, 15], 1)
+(&#39;R13&#39;, [7, 14], 4)
 
 Node 4
-(&#39;H4&#39;, [0, 10], None)
-(&#39;R04&#39;, [6, 8], 1)
-(&#39;R14&#39;, [7, 9], 0)
+(&#39;H4&#39;, [0, 15], None)
+(&#39;R04&#39;, [11, 14], 2)
+(&#39;R14&#39;, [2, 13], 2)
 
---------------------------------------------------
+------------------------------------------------------------
 Graph of the whole network
 </pre></div></div>
 </div>
@@ -737,25 +738,15 @@ Graph of the whole network
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
---------------------------------------------------
-3 loops detected
+------------------------------------------------------------
+1 loops detected
 
 Details:
 
-Atom: H0 &amp; R00 &amp; R14 &amp; R04 &amp; R10 , value = [8, 8]
+Atom: H0 &amp; R01 &amp; R02 &amp; R22 , value = [1, 1]
 1 loops
 Nodes involved:
-Cycle 1 : [0, 4]
-
-Atom: H0 &amp; R01 &amp; R00 &amp; R14 , value = [7, 7]
-1 loops
-Nodes involved:
-Cycle 1 : [0, 4]
-
-Atom: H0 &amp; R00 &amp; R14 &amp; R10 &amp; R02 , value = [9, 9]
-1 loops
-Nodes involved:
-Cycle 1 : [0, 4]
+Cycle 1 : [1, 2]
 
 </pre></div></div>
 </div>
