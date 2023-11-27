@@ -464,13 +464,13 @@ document.write(`
 <span class="sd">    ----------</span>
 <span class="sd">    r : Rule</span>
 <span class="sd">        new rule to add</span>
-<span class="sd">    UC : set</span>
-<span class="sd">        current set of uncovered combinations : Combination instances</span>
+<span class="sd">    UC : set[Combinations]</span>
+<span class="sd">        current set of uncovered combinations</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    set</span>
-<span class="sd">        new set of uncovered combinations : Combination instances</span>
+<span class="sd">    set[Combination]</span>
+<span class="sd">        new set of uncovered combinations</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">UC</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -485,9 +485,9 @@ document.write(`
 
     <span class="n">inter</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">UC</span> <span class="k">if</span>
              <span class="p">(</span><span class="n">c</span> <span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">empty_flag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># get all the combinations which intersect with the new rule</span>
-    <span class="n">inter</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">inter</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">get_card</span><span class="p">())</span>  <span class="c1"># sort by non-decreasing cardinality</span>
+    <span class="n">inter_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">inter</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">get_card</span><span class="p">())</span>  <span class="c1"># sort by non-decreasing cardinality</span>
 
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">inter</span><span class="p">:</span>  <span class="c1"># for each comb in inter, starting from from the smallest</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">inter_sorted</span><span class="p">:</span>  <span class="c1"># for each comb in inter, starting from the smallest</span>
         <span class="n">cc</span> <span class="o">=</span> <span class="n">c</span> <span class="o">&amp;</span> <span class="n">r</span>  <span class="c1"># get the intersection with r</span>
         <span class="k">if</span> <span class="n">cc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">incl</span><span class="p">:</span>  <span class="c1"># if cc not already in the combinations included in r</span>
             <span class="k">if</span> <span class="n">cc</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">UC</span><span class="p">:</span>
@@ -516,8 +516,8 @@ document.write(`
 
     <span class="c1">################################# ATOM SIZE COMPUTATION ##################################</span>
 
-    <span class="n">incl</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">incl</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">get_card</span><span class="p">())</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">incl</span><span class="p">:</span>  <span class="c1"># for each combination that includes r</span>
+    <span class="n">incl_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">incl</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">get_card</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">incl_sorted</span><span class="p">:</span>  <span class="c1"># for each combination that includes r</span>
         <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">atsize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">new</span><span class="p">:</span>
                 <span class="n">c</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">atsize</span> <span class="o">-=</span> <span class="n">c</span><span class="o">.</span><span class="n">atsize</span>
@@ -553,8 +553,7 @@ document.write(`
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    set</span>
-<span class="sd">        set of Combination instances</span>
+<span class="sd">    set[Combination]</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -569,7 +568,7 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">UC</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">UC</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1">#this will sort the uncovered combinations</span>
 
     <span class="c1"># sort R by decreasing cardinality to start by the base rule = H</span>
     <span class="n">R</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">rule</span><span class="p">:</span> <span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_card</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
