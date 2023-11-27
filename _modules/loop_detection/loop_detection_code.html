@@ -478,6 +478,10 @@ document.write(`
     <span class="k">if</span> <span class="n">first_type</span> <span class="o">!=</span> <span class="n">MultiField</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># for multifields, check that all the fields are of the same type</span>
+        <span class="n">nb_inner_rules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span> <span class="c1">#first check that they have the same number of fields</span>
+        <span class="k">for</span> <span class="n">mf</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span> <span class="o">!=</span> <span class="n">nb_inner_rules</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rules</span><span class="p">)):</span>  <span class="c1"># for each field</span>
             <span class="n">fields_list</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>

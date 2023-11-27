@@ -467,18 +467,18 @@ document.write(`
   <section id="Loop-Detection-Tutorial">
 <h1>Loop Detection Tutorial<a class="headerlink" href="#Loop-Detection-Tutorial" title="Link to this heading">#</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">loop_detection</span> <span class="kn">import</span> <span class="n">loop_detection</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">get_UC</span>
 <span class="kn">from</span> <span class="nn">loop_detection.loop_detection_code</span> <span class="kn">import</span> <span class="n">get_rule_set</span><span class="p">,</span> <span class="n">get_aliases</span>
-<span class="kn">from</span> <span class="nn">tests.random_generation</span> <span class="kn">import</span> <span class="n">create_collection_rules</span><span class="p">,</span> <span class="n">generate_fw_tables</span><span class="p">,</span> <span class="n">print_from_fw_tables</span>
+<span class="kn">from</span> <span class="nn">tests.testing_helpers</span> <span class="kn">import</span> <span class="n">create_collection_rules</span><span class="p">,</span> <span class="n">generate_fw_tables</span><span class="p">,</span> <span class="n">print_from_fw_tables</span>
 </pre></div>
 </div>
 </div>
 <p>Take the following fowarding tables</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># each node has a base rule H but the actions for the base rule can differ</span>
@@ -496,7 +496,7 @@ document.write(`
 <span class="n">fw_tables</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;R5&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
                 <span class="p">(</span><span class="s1">&#39;H2&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">)]</span>
 
-<span class="n">fw_tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[(</span><span class="s1">&#39;R5&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+<span class="n">fw_tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[(</span><span class="s1">&#39;R7&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
                  <span class="p">(</span><span class="s1">&#39;R6&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span>
                  <span class="p">(</span><span class="s1">&#39;H3&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">)]</span>
 
@@ -505,7 +505,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -516,11 +516,11 @@ document.write(`
   (&#39;H0&#39;, [0, 5], None)],
  1: [(&#39;R4&#39;, [2, 4], 3), (&#39;H1&#39;, [0, 5], None)],
  2: [(&#39;R5&#39;, [0, 4], 3), (&#39;H2&#39;, [0, 5], None)],
- 3: [(&#39;R5&#39;, [2, 3], 1), (&#39;R6&#39;, [4, 5], None), (&#39;H3&#39;, [0, 5], None)]}
+ 3: [(&#39;R7&#39;, [2, 3], 1), (&#39;R6&#39;, [4, 5], None), (&#39;H3&#39;, [0, 5], None)]}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_from_fw_tables</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
@@ -537,7 +537,7 @@ document.write(`
 <p>There is a loop between 1 and 3.</p>
 <p>Let us check the rule set of the network.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rule_set</span> <span class="o">=</span> <span class="n">get_rule_set</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
@@ -546,27 +546,28 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;R1&#39;: (0, [1, 5], 1, 0),
- &#39;R2&#39;: (0, [1, 4], 1, 1),
- &#39;R3&#39;: (0, [0, 1], None, 2),
- &#39;H0&#39;: (0, [0, 5], None, 3),
- &#39;R4&#39;: (1, [2, 4], 3, 0),
- &#39;H1&#39;: (1, [0, 5], None, 1),
- &#39;R5&#39;: (3, [2, 3], 1, 0),
- &#39;H2&#39;: (2, [0, 5], None, 1),
- &#39;R6&#39;: (3, [4, 5], None, 1),
- &#39;H3&#39;: (3, [0, 5], None, 2)}
+{&#39;R1&#39;: (0, [1, 5], 1),
+ &#39;R2&#39;: (0, [1, 4], 1),
+ &#39;R3&#39;: (0, [0, 1], None),
+ &#39;H0&#39;: (0, [0, 5], None),
+ &#39;R4&#39;: (1, [2, 4], 3),
+ &#39;H1&#39;: (1, [0, 5], None),
+ &#39;R5&#39;: (2, [0, 4], 3),
+ &#39;H2&#39;: (2, [0, 5], None),
+ &#39;R7&#39;: (3, [2, 3], 1),
+ &#39;R6&#39;: (3, [4, 5], None),
+ &#39;H3&#39;: (3, [0, 5], None)}
 </pre></div></div>
 </div>
 <p>Note that H0, H1, H2, H3 are different names for the same rule (at different locations).</p>
 <p>Remove such redundant copies.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aliases</span> <span class="o">=</span> <span class="n">get_aliases</span><span class="p">(</span><span class="n">rule_set</span><span class="p">)</span>
@@ -582,7 +583,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -592,13 +593,14 @@ document.write(`
  (&#39;R2&#39;, [1, 4]),
  (&#39;R3&#39;, [0, 1]),
  (&#39;R4&#39;, [2, 4]),
- (&#39;R5&#39;, [2, 3]),
- (&#39;R6&#39;, [4, 5])}
+ (&#39;R5&#39;, [0, 4]),
+ (&#39;R6&#39;, [4, 5]),
+ (&#39;R7&#39;, [2, 3])}
 </pre></div></div>
 </div>
 <p>Let us get the uncovered combinations generated by these rules.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UC</span> <span class="o">=</span> <span class="n">get_UC</span><span class="p">(</span><span class="n">R_set</span><span class="p">)</span>
@@ -614,21 +616,31 @@ document.write(`
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 5 atoms :
-H0 &amp; R3 , value = [0, 1]
-H0 &amp; R1 &amp; R2 &amp; R4 &amp; R6 , value = [4, 4]
-H0 &amp; R1 &amp; R2 &amp; R3 , value = [1, 1]
-H0 &amp; R1 &amp; R2 &amp; R4 &amp; R5 , value = [2, 3]
+H0 &amp; R5 &amp; R3 , value = [0, 1]
+H0 &amp; R1 &amp; R5 &amp; R4 &amp; R6 , value = [4, 4]
+H0 &amp; R1 &amp; R5 &amp; R3 , value = [1, 1]
+H0 &amp; R1 &amp; R5 &amp; R4 &amp; R7 , value = [2, 3]
 H0 &amp; R1 &amp; R6 , value = [4, 5]
 </pre></div></div>
 </div>
 <p>Now, let us run the loop verification.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">loop_detection</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
+<span class="n">result</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[([2, 3], [[1, 3]])]
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
