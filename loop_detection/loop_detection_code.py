@@ -61,7 +61,7 @@ def get_rule_set(fw_tables: Dict[NodeName, List[Tuple[str, Rule, Action]]]) -> D
     return rule_set
 
 
-def get_aliases(rule_set: Dict[str, Tuple[str, Rule, Action]]) -> Dict[Rule, Set[str]]:
+def get_aliases(rule_set: Dict[str, Tuple[NodeName, Rule, Action]]) -> Dict[Rule, Set[str]]:
     """
     Gets the dict of all names of a given rule
 
