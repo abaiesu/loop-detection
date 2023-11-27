@@ -48,11 +48,10 @@ class Range(Rule):
         self.end = end
         if self.start is not None and self.start is not None:
             if self.start > self.start or self.start > self.max_card - 1:  # the highest address is max_card - 1
-                self.empty_flag = 1
                 raise ValueError("Incorrect range")
-            self.card = self.end - self.start + 1 if not self.empty_flag else 0
-        else:
-            self.empty_flag = 1
+            else:
+                self.empty_flag = 0
+                self.card = self.end - self.start + 1
 
     def __repr__(self):
         return f'[{self.start}, {self.end}]' if not self.empty_flag else '∅'

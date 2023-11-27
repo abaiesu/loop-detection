@@ -39,11 +39,11 @@ class MultiField(Rule):
         super().__init__(float('inf'), None)
         self.rules = rules  # rules is a list of Rule instances
         if rules is not None:
+            count_empty_flags = 0
             for rule in rules:
-                if rule.empty_flag:
-                    self.empty_flag = 1
-        else:
-            self.empty_flag = 1
+                count_empty_flags += rule.empty_flag
+            if count_empty_flags == 0: #if none are empty, then the multifield isn't empty
+                self.empty_flag = 0
 
         if not self.empty_flag:
             result = 1

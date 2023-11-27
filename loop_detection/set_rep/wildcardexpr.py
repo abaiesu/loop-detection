@@ -53,14 +53,13 @@ class WildcardExpr(Rule):
                 raise ValueError('The alphabet for the wildcard expression is : {0, 1, *}')
             if self.max_card < float('inf') and len(string) > math.ceil(math.log2(self.max_card)):
                 raise ValueError(f'The maximum length of an expression is {math.ceil(math.log2(self.max_card + 1))}')
+            self.empty_flag = 0
             count = self.expr.count('*')
             if len(self.expr) > 1:  # avoid the wildcard * = any
                 card = 2 ** count
             else:
                 card = max_card
             self.card = card
-        else:
-            self.empty_flag = 1
 
     def __repr__(self):
         return self.expr if self.expr is not None else '∅'

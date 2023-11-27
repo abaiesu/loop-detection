@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/github/license/abaiesu/loop-detection)](https://github.com/abaiesu/loop-detection/blob/main/LICENSE)
 [![Code Coverage](https://codecov.io/gh/abaiesu/loop-detection/branch/main/graphs/badge.svg)](https://codecov.io/gh/abaiesu/loop-detection/tree/main)
 
-Detects loops in a network from its forwarding tables
+Detects loops in a network from its forwarding tables. We use an algorithm that only requires set intersection, to avoid the increase in complexity when unions and complements are used.
 
 
 - Free software: MIT license
@@ -16,10 +16,9 @@ Detects loops in a network from its forwarding tables
 
 ## Features
 
-- TODO
-- Modif test
-- New test
-- More tests
+- Classes for rule representation. Supported types of rules : ranges, wildcard expressions, n-tuples/multi-fields.
+- An efficient algorithm to compute the equivalence classes of the header space from a set of rules.
+- A loop detection function which returns the nodes and the rules involved in the network loop.
 
 ## Credits
 

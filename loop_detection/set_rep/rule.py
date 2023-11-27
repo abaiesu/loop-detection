@@ -13,7 +13,7 @@ class Rule:
     """
 
     def __init__(self, max_card, field):
-        self.empty_flag = 0
+        self.empty_flag = 1 #by default all new rules are empty
         self.field = field
         self.max_card = max_card
         self.card = 0
