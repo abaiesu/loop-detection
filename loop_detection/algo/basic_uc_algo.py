@@ -44,8 +44,8 @@ def basic_add_rule(r: Combination, UC: Set[Combination]):
     for c in UC:
         c.atsize = c.rule.get_card()
         c.sup = {d for d in UC if c < d and c != d}
-    UC = sorted(UC, key=lambda c: c.rule.get_card())
-    for c in UC:
+    UC_sorted = sorted(UC, key=lambda c: c.rule.get_card())
+    for c in UC_sorted:
         for d in c.sup:
             d.atsize -= c.atsize
 

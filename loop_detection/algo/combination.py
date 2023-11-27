@@ -7,6 +7,7 @@ This file is part of Loop Detection.
 """
 
 from loop_detection.set_rep.range import Range
+from typing import Union
 
 
 class Combination:
@@ -51,7 +52,7 @@ class Combination:
         self.sup = set()  # set of combinations that include r
         self.cont = set()  # set of rules that contain r
         self.atsize = r.get_card()
-        self.parent = None  # smallest combination such that self & parent is non empty
+        self.parent: Union[Combination, None] = None  # smallest combination such that self & parent is non-empty, by default itself
         self.covered = False
         self.comp = comp  # keep track of the rules that compose the current rule
 

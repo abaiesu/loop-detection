@@ -80,7 +80,7 @@ def add_rule(r: Combination, UC: Set[Combination]) -> Set[Combination]:
     incl_sorted = sorted(incl, key=lambda c: c.rule.get_card())
     for c in incl_sorted:  # for each combination that includes r
         if c.atsize > 0:
-            if c in new:
+            if c in new and c.parent is not None:
                 c.parent.atsize -= c.atsize
                 c.sup = {c.parent}
                 c.sup.update(c.parent.sup)  # update sup
