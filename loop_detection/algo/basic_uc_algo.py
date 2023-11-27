@@ -7,10 +7,18 @@ This file is part of Loop Detection.
 """
 
 from loop_detection.algo.combination import Combination
+from loop_detection.set_rep.range import Range
+from loop_detection.set_rep.wildcardexpr import WildcardExpr
+from loop_detection.set_rep.multifield import MultiField
+from typing import Set, Union, Iterable, Tuple
+
+NodeName = Union[int, str]
+Action = Union[NodeName, None]
+Rule = Union[Range, WildcardExpr, MultiField]
 
 
-def basic_add_rule(r, UC):
-    """"
+def basic_add_rule(r: Rule, UC: Set[Combination]):
+    """
     Adds a rule to a set of uncovered combinations and updates the set following the basic algorithm
 
     Parameters
@@ -22,8 +30,7 @@ def basic_add_rule(r, UC):
 
     Returns
     -------
-    set
-        new set of Combinations instances
+    set[Combination]
 
     """
 
@@ -47,7 +54,7 @@ def basic_add_rule(r, UC):
     return UC
 
 
-def get_UC_basic(R):
+def get_UC_basic(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
     """"
     Returns the set of uncovered combinations using the basic algorithm (add_rule_basic)
 
@@ -58,8 +65,7 @@ def get_UC_basic(R):
 
     Returns
     -------
-    set
-        set of Combination instances
+    set[Combination]
 
     """
 

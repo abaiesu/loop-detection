@@ -8,9 +8,16 @@ This file is part of Loop Detection.
 
 from loop_detection.algo.combination import Combination
 from loop_detection.set_rep.range import Range
+from loop_detection.set_rep.wildcardexpr import WildcardExpr
+from loop_detection.set_rep.multifield import MultiField
+from typing import Set, Union, Iterable, Tuple
+
+NodeName = Union[int, str]
+Action = Union[NodeName, None]
+Rule = Union[Range, WildcardExpr, MultiField]
 
 
-def add_rule(r, UC):
+def add_rule(r: Rule, UC: Set[Combination]) -> Set[Combination]:
     """"
     Adds a rule to a set of uncovered combinations and updates the set following the more efficient algorithm
 
@@ -94,7 +101,7 @@ def add_rule(r, UC):
     return UC
 
 
-def get_UC(R):
+def get_UC(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
     """
     Returns the set of uncovered combinations using the algorithm with the best complexity (add_rule)
 
@@ -120,7 +127,7 @@ def get_UC(R):
 
     """
 
-    UC = set() #this will sort the uncovered combinations
+    UC = set()  # this will sort the uncovered combinations
 
     # sort R by decreasing cardinality to start by the base rule = H
     R = sorted(R, key=lambda rule: rule[1].get_card(), reverse=True)

@@ -1,11 +1,39 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from loop_detection.algo.uc_algo import get_UC
+from loop_detection.algo.uc_algo import get_UC, Combination
 from loop_detection.set_rep.range import Range
+from loop_detection.set_rep.wildcardexpr import WildcardExpr
+from loop_detection.set_rep.multifield import MultiField
+from typing import Dict, List, Tuple, Set, Union, Iterable
+
+NodeName = Union[int, str]
+Action = Union[NodeName, None]
+Rule = Union[Range, WildcardExpr, MultiField]
 
 
-def get_rule_set(fw_tables):
+def check_same_type(collection: Iterable) -> bool:
+    """Checks if all the elements in the iterable are of the same type.
+    In the case of Multifield rules, it checks that each corresponding field has the same type """
+
+    first_type = type(next(iter(collection), None))  # get the type of the first element in the collection
+    same_types = all(isinstance(element, first_type) for element in collection)
+    if not same_types:
+        return False
+    if first_type != MultiField:
+        return True
+    else:  # for multifields, check that all the fields are of the same type
+        for field in range(len(collection[0].rules)):  # for each field
+            fields_list = []
+            for rule in collection:
+                rules_list = rule.rules
+                fields_list.append(rules_list[field])
+            if not check_same_type(fields_list):
+                return False
+        return True
+
+
+def get_rule_set(fw_tables: Dict[NodeName, List[Tuple[str, Rule, Action]]]) -> Dict[NodeName, Tuple[str, Rule, Action]]:
     """
     Merges all the rules from the forwarding table into the same set
 
@@ -26,11 +54,13 @@ def get_rule_set(fw_tables):
     rule_set = {}
     for node, rules in fw_tables.items():
         for i, rule in enumerate(rules):
+            if rule[0] in rule_set.keys():  # the name of the rule already exists in the rule set
+                raise ValueError(f"The rule {rule[0]} already exists in node {rule_set[rule[0]][0]}")
             rule_set[rule[0]] = (node, rule[1], rule[2], i)
     return rule_set
 
 
-def get_aliases(rule_set):
+def get_aliases(rule_set: Dict[NodeName, Tuple[str, Rule, Action]]) -> Dict[Rule, str]:
     """
     Gets the dict of all names of a given rule
 
@@ -57,13 +87,16 @@ def get_aliases(rule_set):
     return aliases
 
 
-def cycles_detection(UC, rule_set, aliases, early_stop=False):
+def cycles_detection(UC: Set[Combination],
+                     rule_set: Dict[NodeName, Tuple[str, Rule, Action]],
+                     aliases: Dict[Rule, str],
+                     early_stop: bool = False) -> List[Tuple[Combination, List[List[NodeName]]]]:
     """
-    Detects cycles in the induced graph of the each uncovered combination
+    Detects cycles in the induced graph of each uncovered combination
 
     Parameters
     ----------
-    UC : set
+    UC : set[Combinations]
         set of all uncovered combinations, matches the output of get_UC
     rule_set : set
         matches output of get_rule_set
@@ -115,7 +148,8 @@ def cycles_detection(UC, rule_set, aliases, early_stop=False):
     return loops
 
 
-def loop_detection(fw_tables, early_stop=False):
+def loop_detection(fw_tables: Dict[NodeName, List[Tuple[str, Rule, Action]]], early_stop: bool = False) \
+    -> List[Tuple[Combination, List[List[NodeName]]]]:
     """
     Detects loops in a network from its forwarding tables
 
@@ -133,7 +167,8 @@ def loop_detection(fw_tables, early_stop=False):
     Returns
     -------
     list
-        the items of the list are tuples of the form (atom : Combination, list of cycles) |
+        the items of the list are tuples of the form (atom : Combination, list of cycles)
+
         the cycles are lists with all the nodes involved
 
         if early_stop == True, the returned value will be a list of length 1 with the first cycle encountered
@@ -145,7 +180,7 @@ def loop_detection(fw_tables, early_stop=False):
     >>> example_tables[0] = [('R1', Range(1,5), 1), ('R2', Range(1,4), 1), ('R3', Range(0,1), None), ('H0', Range(0,5), None)]
     >>> example_tables[1] =  [('R4', Range(2,4), 3), ('H1', Range(0,5), None)]
     >>> example_tables[2] = [('R5', Range(0, 4), 3), ('H2', Range(0,5), None)]
-    >>> example_tables[3] =  [('R5', Range(2,3), 1), ('R6', Range(4, 5), None), ('H3', Range(0,5), None)]
+    >>> example_tables[3] =  [('R7', Range(2,3), 1), ('R6', Range(4, 5), None), ('H3', Range(0,5), None)]
     >>> len(loop_detection(example_tables)) > 0
     True
     """
@@ -162,6 +197,10 @@ def loop_detection(fw_tables, early_stop=False):
         if unique_count[rule[1]] == 0:
             R_set.add(rule)
             unique_count[rule[1]] += 1
+
+    R_rules = [r[1] for r in R_set]  # get a list of the rules alone to check for types
+    if not check_same_type(R_rules):
+        raise ValueError("The rules of the network don't have the same type")
 
     UC = get_UC(R_set)
 
