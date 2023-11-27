@@ -18,13 +18,13 @@ def add_rule(r, UC):
     ----------
     r : Rule
         new rule to add
-    UC : set
-        current set of uncovered combinations : Combination instances
+    UC : set[Combinations]
+        current set of uncovered combinations
 
     Returns
     -------
-    set
-        new set of uncovered combinations : Combination instances
+    set[Combination]
+        new set of uncovered combinations
     """
 
     if len(UC) == 0:
@@ -39,9 +39,9 @@ def add_rule(r, UC):
 
     inter = {c for c in UC if
              (c & r).rule.empty_flag == 0}  # get all the combinations which intersect with the new rule
-    inter = sorted(inter, key=lambda c: c.rule.get_card())  # sort by non-decreasing cardinality
+    inter_sorted = sorted(inter, key=lambda c: c.rule.get_card())  # sort by non-decreasing cardinality
 
-    for c in inter:  # for each comb in inter, starting from from the smallest
+    for c in inter_sorted:  # for each comb in inter, starting from the smallest
         cc = c & r  # get the intersection with r
         if cc not in incl:  # if cc not already in the combinations included in r
             if cc not in UC:
@@ -70,8 +70,8 @@ def add_rule(r, UC):
 
     ################################# ATOM SIZE COMPUTATION ##################################
 
-    incl = sorted(incl, key=lambda c: c.rule.get_card())
-    for c in incl:  # for each combination that includes r
+    incl_sorted = sorted(incl, key=lambda c: c.rule.get_card())
+    for c in incl_sorted:  # for each combination that includes r
         if c.atsize > 0:
             if c in new:
                 c.parent.atsize -= c.atsize
@@ -105,8 +105,7 @@ def get_UC(R):
 
     Returns
     -------
-    set
-        set of Combination instances
+    set[Combination]
 
     Examples
     --------
@@ -121,7 +120,7 @@ def get_UC(R):
 
     """
 
-    UC = set()
+    UC = set() #this will sort the uncovered combinations
 
     # sort R by decreasing cardinality to start by the base rule = H
     R = sorted(R, key=lambda rule: rule[1].get_card(), reverse=True)
