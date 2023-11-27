@@ -1,5 +1,4 @@
 import networkx as nx
-import matplotlib.pyplot as plt
 
 from loop_detection.algo.uc_algo import get_UC
 from loop_detection.algo.combination import Combination
