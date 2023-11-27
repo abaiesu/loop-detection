@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+Copyright Antonia Baies
+baies.antonia@gmail.com
+
+This file is part of Loop Detection.
+"""
+
+
 import networkx as nx
 
 from loop_detection.algo.uc_algo import get_UC
