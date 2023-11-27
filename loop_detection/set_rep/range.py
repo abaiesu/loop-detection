@@ -123,11 +123,15 @@ class Range(Rule):
         if other.empty_flag:  # nothing is included in the empty set
             return False
 
+        if self.empty_flag: #empty set included in all sets
+            return True
+
         if isinstance(other, WildcardExpr) and other.expr == '*':  # other accepts it all
             return True
 
         if other.start <= self.start and other.end >= self.end:
             return True
+
         return False
 
     def get_card(self):

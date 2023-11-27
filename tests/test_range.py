@@ -42,3 +42,9 @@ def test_incl():
     assert (r1 < r2) == False
     assert (r2 < r3) == True
     assert (r3 < r3) == True
+    r4 = WildcardExpr('*')
+    assert (r3 < r4) == True
+    r5 = r1 & r2 #is empty
+    assert r5.empty_flag == 1
+    assert (r2 < r5) == False
+    assert (r5 < r2) == True
