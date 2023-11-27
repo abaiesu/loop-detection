@@ -576,11 +576,15 @@ document.write(`
         <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">empty_flag</span><span class="p">:</span>  <span class="c1"># nothing is included in the empty set</span>
             <span class="k">return</span> <span class="kc">False</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_flag</span><span class="p">:</span> <span class="c1">#empty set included in all sets</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">WildcardExpr</span><span class="p">)</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">expr</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>  <span class="c1"># other accepts it all</span>
             <span class="k">return</span> <span class="kc">True</span>
 
         <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">start</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">end</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
+
         <span class="k">return</span> <span class="kc">False</span></div>
 
 
