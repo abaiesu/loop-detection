@@ -447,18 +447,19 @@ document.write(`
 <span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">loop_detection.algo.uc_algo</span> <span class="kn">import</span> <span class="n">get_UC</span><span class="p">,</span> <span class="n">Combination</span>
+<span class="kn">from</span> <span class="nn">loop_detection.algo.uc_algo</span> <span class="kn">import</span> <span class="n">get_UC</span>
+<span class="kn">from</span> <span class="nn">loop_detection.algo.combination</span> <span class="kn">import</span> <span class="n">Combination</span>
 <span class="kn">from</span> <span class="nn">loop_detection.set_rep.range</span> <span class="kn">import</span> <span class="n">Range</span>
 <span class="kn">from</span> <span class="nn">loop_detection.set_rep.wildcardexpr</span> <span class="kn">import</span> <span class="n">WildcardExpr</span>
 <span class="kn">from</span> <span class="nn">loop_detection.set_rep.multifield</span> <span class="kn">import</span> <span class="n">MultiField</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="n">NodeName</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 <span class="n">Action</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 <span class="n">Rule</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Range</span><span class="p">,</span> <span class="n">WildcardExpr</span><span class="p">,</span> <span class="n">MultiField</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">check_same_type</span><span class="p">(</span><span class="n">collection</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">check_same_type</span><span class="p">(</span><span class="n">collection</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if all the elements in the iterable are of the same type.</span>
 <span class="sd">    In the case of Multifield rules, it checks that each corresponding field has the same type &quot;&quot;&quot;</span>
 
@@ -497,16 +498,16 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">rule_set</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">fw_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rule</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rules</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  <span class="c1"># the name of the rule already exists in the rule set</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rule </span><span class="si">{</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> already exists in node </span><span class="si">{</span><span class="n">rule_set</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">rule_set</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rule</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">rule_set</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rule</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">rule_set</span>
 
 
-<span class="k">def</span> <span class="nf">get_aliases</span><span class="p">(</span><span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">get_aliases</span><span class="p">(</span><span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets the dict of all names of a given rule</span>
 
@@ -521,7 +522,7 @@ document.write(`
 <span class="sd">        dictionary where the keys are rule values, and the values are sets of valid names : str</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">aliases</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">aliases</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">rule_value</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>

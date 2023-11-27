@@ -463,14 +463,14 @@ document.write(`
 <span class="n">Rule</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Range</span><span class="p">,</span> <span class="n">WildcardExpr</span><span class="p">,</span> <span class="n">MultiField</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">add_rule</span><span class="p">(</span><span class="n">r</span><span class="p">:</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">UC</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">add_rule</span><span class="p">(</span><span class="n">r</span><span class="p">:</span> <span class="n">Combination</span><span class="p">,</span> <span class="n">UC</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&quot;</span>
 <span class="sd">    Adds a rule to a set of uncovered combinations and updates the set following the more efficient algorithm</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    r : Rule</span>
-<span class="sd">        new rule to add</span>
+<span class="sd">    r : Combination</span>
+<span class="sd">        new rule to add, wrapped with the Combination attributes</span>
 <span class="sd">    UC : set[Combinations]</span>
 <span class="sd">        current set of uncovered combinations</span>
 
@@ -575,7 +575,7 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">UC</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># this will sort the uncovered combinations</span>
+    <span class="n">UC</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># this will sort the uncovered combinations</span>
 
     <span class="c1"># sort R by decreasing cardinality to start by the base rule = H</span>
     <span class="n">R</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">rule</span><span class="p">:</span> <span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_card</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

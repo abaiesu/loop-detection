@@ -576,6 +576,9 @@ document.write(`
 <span class="gp">&gt;&gt;&gt; </span><span class="n">r2</span> <span class="o">=</span> <span class="n">WildcardExpr</span><span class="p">(</span><span class="s2">&quot;*1**&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">r1</span> <span class="o">&lt;</span> <span class="n">r2</span>
 <span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">=</span> <span class="n">WildcardExpr</span><span class="p">(</span><span class="s2">&quot;****&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r3</span> <span class="o">&lt;</span> <span class="n">r2</span>
+<span class="go">False</span>
 </pre></div>
 </div>
 </dd></dl>
