@@ -447,11 +447,39 @@ document.write(`
 <span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">loop_detection.algo.uc_algo</span> <span class="kn">import</span> <span class="n">get_UC</span>
+<span class="kn">from</span> <span class="nn">loop_detection.algo.uc_algo</span> <span class="kn">import</span> <span class="n">get_UC</span><span class="p">,</span> <span class="n">Combination</span>
 <span class="kn">from</span> <span class="nn">loop_detection.set_rep.range</span> <span class="kn">import</span> <span class="n">Range</span>
+<span class="kn">from</span> <span class="nn">loop_detection.set_rep.wildcardexpr</span> <span class="kn">import</span> <span class="n">WildcardExpr</span>
+<span class="kn">from</span> <span class="nn">loop_detection.set_rep.multifield</span> <span class="kn">import</span> <span class="n">MultiField</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span>
+
+<span class="n">NodeName</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+<span class="n">Action</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="n">Rule</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Range</span><span class="p">,</span> <span class="n">WildcardExpr</span><span class="p">,</span> <span class="n">MultiField</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">get_rule_set</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">check_same_type</span><span class="p">(</span><span class="n">collection</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if all the elements in the iterable are of the same type.</span>
+<span class="sd">    In the case of Multifield rules, it checks that each corresponding field has the same type &quot;&quot;&quot;</span>
+
+    <span class="n">first_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">collection</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>  <span class="c1"># get the type of the first element in the collection</span>
+    <span class="n">same_types</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">first_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">same_types</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">first_type</span> <span class="o">!=</span> <span class="n">MultiField</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># for multifields, check that all the fields are of the same type</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rules</span><span class="p">)):</span>  <span class="c1"># for each field</span>
+            <span class="n">fields_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
+                <span class="n">rules_list</span> <span class="o">=</span> <span class="n">rule</span><span class="o">.</span><span class="n">rules</span>
+                <span class="n">fields_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rules_list</span><span class="p">[</span><span class="n">field</span><span class="p">])</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">check_same_type</span><span class="p">(</span><span class="n">fields_list</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="k">def</span> <span class="nf">get_rule_set</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Merges all the rules from the forwarding table into the same set</span>
 
@@ -472,11 +500,13 @@ document.write(`
     <span class="n">rule_set</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">fw_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rule</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rules</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  <span class="c1"># the name of the rule already exists in the rule set</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rule </span><span class="si">{</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> already exists in node </span><span class="si">{</span><span class="n">rule_set</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">rule_set</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rule</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">rule_set</span>
 
 
-<span class="k">def</span> <span class="nf">get_aliases</span><span class="p">(</span><span class="n">rule_set</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_aliases</span><span class="p">(</span><span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Gets the dict of all names of a given rule</span>
 
@@ -503,13 +533,16 @@ document.write(`
     <span class="k">return</span> <span class="n">aliases</span>
 
 
-<span class="k">def</span> <span class="nf">cycles_detection</span><span class="p">(</span><span class="n">UC</span><span class="p">,</span> <span class="n">rule_set</span><span class="p">,</span> <span class="n">aliases</span><span class="p">,</span> <span class="n">early_stop</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">cycles_detection</span><span class="p">(</span><span class="n">UC</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">],</span>
+                     <span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]],</span>
+                     <span class="n">aliases</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+                     <span class="n">early_stop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Combination</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">NodeName</span><span class="p">]]]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Detects cycles in the induced graph of the each uncovered combination</span>
+<span class="sd">    Detects cycles in the induced graph of each uncovered combination</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    UC : set</span>
+<span class="sd">    UC : set[Combinations]</span>
 <span class="sd">        set of all uncovered combinations, matches the output of get_UC</span>
 <span class="sd">    rule_set : set</span>
 <span class="sd">        matches output of get_rule_set</span>
@@ -563,7 +596,8 @@ document.write(`
 
 <div class="viewcode-block" id="loop_detection">
 <a class="viewcode-back" href="../../reference/loop_detection.html#loop_detection.loop_detection">[docs]</a>
-<span class="k">def</span> <span class="nf">loop_detection</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">,</span> <span class="n">early_stop</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">loop_detection</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]],</span> <span class="n">early_stop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> \
+    <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Combination</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">NodeName</span><span class="p">]]]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Detects loops in a network from its forwarding tables</span>
 
@@ -581,7 +615,8 @@ document.write(`
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list</span>
-<span class="sd">        the items of the list are tuples of the form (atom : Combination, list of cycles) |</span>
+<span class="sd">        the items of the list are tuples of the form (atom : Combination, list of cycles)</span>
+
 <span class="sd">        the cycles are lists with all the nodes involved</span>
 
 <span class="sd">        if early_stop == True, the returned value will be a list of length 1 with the first cycle encountered</span>
@@ -593,7 +628,7 @@ document.write(`
 <span class="sd">    &gt;&gt;&gt; example_tables[0] = [(&#39;R1&#39;, Range(1,5), 1), (&#39;R2&#39;, Range(1,4), 1), (&#39;R3&#39;, Range(0,1), None), (&#39;H0&#39;, Range(0,5), None)]</span>
 <span class="sd">    &gt;&gt;&gt; example_tables[1] =  [(&#39;R4&#39;, Range(2,4), 3), (&#39;H1&#39;, Range(0,5), None)]</span>
 <span class="sd">    &gt;&gt;&gt; example_tables[2] = [(&#39;R5&#39;, Range(0, 4), 3), (&#39;H2&#39;, Range(0,5), None)]</span>
-<span class="sd">    &gt;&gt;&gt; example_tables[3] =  [(&#39;R5&#39;, Range(2,3), 1), (&#39;R6&#39;, Range(4, 5), None), (&#39;H3&#39;, Range(0,5), None)]</span>
+<span class="sd">    &gt;&gt;&gt; example_tables[3] =  [(&#39;R7&#39;, Range(2,3), 1), (&#39;R6&#39;, Range(4, 5), None), (&#39;H3&#39;, Range(0,5), None)]</span>
 <span class="sd">    &gt;&gt;&gt; len(loop_detection(example_tables)) &gt; 0</span>
 <span class="sd">    True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -610,6 +645,10 @@ document.write(`
         <span class="k">if</span> <span class="n">unique_count</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">R_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
             <span class="n">unique_count</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">R_rules</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R_set</span><span class="p">]</span>  <span class="c1"># get a list of the rules alone to check for types</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">check_same_type</span><span class="p">(</span><span class="n">R_rules</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The rules of the network don&#39;t have the same type&quot;</span><span class="p">)</span>
 
     <span class="n">UC</span> <span class="o">=</span> <span class="n">get_UC</span><span class="p">(</span><span class="n">R_set</span><span class="p">)</span>
 
