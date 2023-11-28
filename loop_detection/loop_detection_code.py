@@ -11,9 +11,7 @@ import networkx as nx
 
 from loop_detection.algo.uc_algo import get_UC
 from loop_detection.algo.combination import Combination
-from loop_detection.set_rep.range import Range
-from loop_detection.set_rep.wildcardexpr import WildcardExpr
-from loop_detection.set_rep.multifield import MultiField
+from loop_detection import MultiField, Range, WildcardExpr
 from typing import Dict, List, Tuple, Set, Union
 
 NodeName = Union[int, str]

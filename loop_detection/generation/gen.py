@@ -2,10 +2,17 @@ from loop_detection import MultiField, Range, WildcardExpr
 import matplotlib.pyplot as plt
 import networkx as nx
 import random
-from loop_detection.algo.combination import Combination
+from typing import Dict, List, Tuple, Set, Union
+
+Rule = Union[Range, WildcardExpr, MultiField]
 
 
-def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3, min_range=0, max_range=100, wc_len=6):
+def create_collection_rules(num_rules: int,
+                            num_fields_wc: int = 2,
+                            num_fields_r: int = 3,
+                            min_range: int = 0,
+                            max_range: int = 100,
+                            wc_len: int = 6) -> List[Tuple[str, Rule]]:
     """"
     Returns a list of random rules
 
@@ -32,7 +39,7 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3, min_rang
 
     """
 
-    R = []
+    R : List[Tuple[str, Rule]] = []
 
     # build the whole space
     H = MultiField([Range(min_range, max_range) for _ in range(num_fields_r)]  # add all the range fields
@@ -44,7 +51,7 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3, min_rang
     R.append(('H', H))
 
     for i in range(num_rules):
-        multif = []
+        multif : List[Rule] = []
         for j in range(num_fields_r):  # create the range fields
             val1 = random.randint(min_range, max_range)  # get 2 random ints
             val2 = random.randint(min_range, max_range)
@@ -115,4 +122,3 @@ def print_from_fw_tables(fw_tables):
     nx.draw(G, pos, with_labels=True, font_weight='bold', node_size=300,
             node_color='skyblue', arrowsize=10, connectionstyle='arc3, rad = 0.1')
     plt.show()
-
