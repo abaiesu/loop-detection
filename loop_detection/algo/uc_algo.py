@@ -103,12 +103,12 @@ def add_rule(r: Combination, UC: Set[Combination]) -> Set[Combination]:
 
 def get_UC(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
     """
-    Returns the set of uncovered combinations using the algorithm with the best complexity (add_rule)
+    Returns the set of uncovered combinations associated to the set of rules given as input
 
     Parameters
     ----------
     R : array-like
-        list/set of tuples of the form : (str, Rule)
+        list/set of tuples of the form : (name of the rules, rule)
 
     Returns
     -------
@@ -127,7 +127,7 @@ def get_UC(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
 
     """
 
-    UC: Set[Combination] = set()  # this will sort the uncovered combinations
+    UC: Set[Combination] = set()
 
     # sort R by decreasing cardinality to start by the base rule = H
     R = sorted(R, key=lambda rule: rule[1].get_card(), reverse=True)

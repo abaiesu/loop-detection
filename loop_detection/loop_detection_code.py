@@ -169,22 +169,22 @@ def loop_detection(fw_tables: Dict[NodeName, List[Tuple[str, Rule, Action]]], ea
     Parameters
     ----------
     fw_tables : dict
-        the keys of the dictionary are the names of the nodes/routers
+        The keys of the dictionary are the names of the nodes/routers.
 
-        the values are the list of the rules present at the key node
+        The values are the list of the rules present at the key node.
 
-        the rules are in the following format : (name : str, rule : Rule, action = None or name of the destination node)
+        The rules are in the following format : (name of the rule, rule, action).
     early_stop : bool, default = False
-        whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)
+        Whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)
 
     Returns
     -------
     list
-        the items of the list are tuples of the form (atom : Combination, list of cycles)
+        The items of the list are tuples of the form (atom, list of cycles)
 
-        the cycles are lists with all the nodes involved
+        The cycles are lists with all the nodes involved.
 
-        if early_stop == True, the returned value will be a list of length 1 with the first cycle encountered
+        If early_stop, the returned value will be a list of length 1 with the first (atom, cycles) pair encountered
 
     Examples
     --------

@@ -16,7 +16,7 @@ Detects loops in a network from its forwarding tables. We use an algorithm that 
 
 ## Features
 
-- Classes for rule representation. Supported types of rules : ranges, wildcard expressions, n-tuples/multi-fields.
+- Classes for rule representation. Supported types of rules : ranges, wildcard expressions, n-tuples (multi-fields).
 - An efficient algorithm to compute the equivalence classes of the header space from a set of rules.
 - A loop detection function which returns the nodes and the rules involved in the network loop.
 

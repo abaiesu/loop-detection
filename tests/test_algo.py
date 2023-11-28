@@ -1,6 +1,7 @@
 from loop_detection.algo.basic_uc_algo import get_UC_basic
 from loop_detection import Range, MultiField, get_UC
-from tests.testing_helpers import create_collection_rules, get_UC_naive
+from loop_detection.generation.gen import create_collection_rules
+from tests.testing_helpers import get_UC_naive
 import random
 import pytest
 
