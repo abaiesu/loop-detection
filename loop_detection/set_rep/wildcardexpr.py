@@ -23,7 +23,7 @@ class WildcardExpr(Rule):
     max_card : int, default = infinity
         maximum cardinality of the rule
     field : str, default = None
-        string for the name of the field the act acts on rule (IP source, port range...)
+        string for the name of the field the rule acts on (IP source, port range...)
 
     Attributes
     ----------
