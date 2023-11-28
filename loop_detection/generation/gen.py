@@ -4,6 +4,8 @@ import networkx as nx
 import random
 from typing import Dict, List, Tuple, Set, Union
 
+NodeName = Union[int, str]
+Action = Union[NodeName, None]
 Rule = Union[Range, WildcardExpr, MultiField]
 
 
@@ -72,10 +74,10 @@ def create_collection_rules(num_rules: int,
     return R
 
 
-def generate_fw_tables(nb_nodes, max_range=10):
+def generate_fw_tables(nb_nodes: int, max_range: int = 10) -> Dict[NodeName, List[Tuple[str, Rule, Action]]]:
     """Returns a random forwarding table with nb_nodes nodes"""
 
-    fw_tables = {i: [] for i in range(nb_nodes)}
+    fw_tables: Dict[NodeName, List[Tuple[str, Rule, Action]]] = {i: [] for i in range(nb_nodes)}
 
     for node in fw_tables.keys():
 
