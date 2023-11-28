@@ -1,6 +1,7 @@
 from loop_detection import WildcardExpr, Range, MultiField, loop_detection
 from loop_detection.algo.combination import Combination
 from loop_detection.loop_detection_code import check_same_type
+from loop_detection.generation.gen import generate_fw_tables
 import pytest
 
 
@@ -45,3 +46,8 @@ def test_loop_detection():
     result = loop_detection(fw_tables)
 
     assert result == [(Combination(Range(2, 3)), [[1, 3]])]
+
+    fw_tables = generate_fw_tables(5)
+    result = loop_detection(fw_tables)
+    assert result is not None
+    assert isinstance(result, list)
