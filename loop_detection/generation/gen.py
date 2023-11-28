@@ -94,8 +94,11 @@ def generate_fw_tables(nb_nodes: int, max_range: int = 10) -> Dict[NodeName, Lis
 
         # add the rest of the rules
         for r in R[1:]:
-            action = random.choice([i for i in range(nb_nodes) if i != node] + [None])
-            fw_tables[node].append((r[0] + str(node), r[1], action))
+            action = random.choice([i for i in range(nb_nodes) if i != node] + [-1])
+            if action < 0:
+                fw_tables[node].append((r[0] + str(node), r[1], None))
+            else:
+                fw_tables[node].append((r[0] + str(node), r[1], action))
 
     return fw_tables
 
