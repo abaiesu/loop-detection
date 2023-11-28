@@ -474,17 +474,17 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fw_tables</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – <p>the keys of the dictionary are the names of the nodes/routers</p>
-<p>the values are the list of the rules present at the key node</p>
-<p>the rules are in the following format : (name : str, rule : Rule, action = None or name of the destination node)</p>
+<li><p><strong>fw_tables</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – <p>The keys of the dictionary are the names of the nodes/routers.</p>
+<p>The values are the list of the rules present at the key node.</p>
+<p>The rules are in the following format : (name of the rule, rule, action).</p>
 </p></li>
-<li><p><strong>early_stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default = False</em>) – whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)</p></li>
+<li><p><strong>early_stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default = False</em>) – Whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>the items of the list are tuples of the form (atom : Combination, list of cycles)</p>
-<p>the cycles are lists with all the nodes involved</p>
-<p>if early_stop == True, the returned value will be a list of length 1 with the first cycle encountered</p>
+<dd class="field-even"><p><p>The items of the list are tuples of the form (atom, list of cycles)</p>
+<p>The cycles are lists with all the nodes involved.</p>
+<p>If early_stop, the returned value will be a list of length 1 with the first (atom, cycles) pair encountered</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>

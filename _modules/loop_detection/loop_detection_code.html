@@ -617,22 +617,22 @@ document.write(`
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    fw_tables : dict</span>
-<span class="sd">        the keys of the dictionary are the names of the nodes/routers</span>
+<span class="sd">        The keys of the dictionary are the names of the nodes/routers.</span>
 
-<span class="sd">        the values are the list of the rules present at the key node</span>
+<span class="sd">        The values are the list of the rules present at the key node.</span>
 
-<span class="sd">        the rules are in the following format : (name : str, rule : Rule, action = None or name of the destination node)</span>
+<span class="sd">        The rules are in the following format : (name of the rule, rule, action).</span>
 <span class="sd">    early_stop : bool, default = False</span>
-<span class="sd">        whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)</span>
+<span class="sd">        Whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list</span>
-<span class="sd">        the items of the list are tuples of the form (atom : Combination, list of cycles)</span>
+<span class="sd">        The items of the list are tuples of the form (atom, list of cycles)</span>
 
-<span class="sd">        the cycles are lists with all the nodes involved</span>
+<span class="sd">        The cycles are lists with all the nodes involved.</span>
 
-<span class="sd">        if early_stop == True, the returned value will be a list of length 1 with the first cycle encountered</span>
+<span class="sd">        If early_stop, the returned value will be a list of length 1 with the first (atom, cycles) pair encountered</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>

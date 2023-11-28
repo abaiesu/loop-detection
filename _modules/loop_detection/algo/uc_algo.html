@@ -551,12 +551,12 @@ document.write(`
 <a class="viewcode-back" href="../../../reference/get_uc.html#loop_detection.get_UC">[docs]</a>
 <span class="k">def</span> <span class="nf">get_UC</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the set of uncovered combinations using the algorithm with the best complexity (add_rule)</span>
+<span class="sd">    Returns the set of uncovered combinations associated to the set of rules given as input</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    R : array-like</span>
-<span class="sd">        list/set of tuples of the form : (str, Rule)</span>
+<span class="sd">        list/set of tuples of the form : (name of the rules, rule)</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -575,7 +575,7 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">UC</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># this will sort the uncovered combinations</span>
+    <span class="n">UC</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="c1"># sort R by decreasing cardinality to start by the base rule = H</span>
     <span class="n">R</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">rule</span><span class="p">:</span> <span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_card</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

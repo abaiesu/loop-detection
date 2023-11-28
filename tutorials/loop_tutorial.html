@@ -467,18 +467,18 @@ document.write(`
   <section id="Loop-Detection-Tutorial">
 <h1>Loop Detection Tutorial<a class="headerlink" href="#Loop-Detection-Tutorial" title="Link to this heading">#</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">loop_detection</span> <span class="kn">import</span> <span class="n">loop_detection</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">get_UC</span>
 <span class="kn">from</span> <span class="nn">loop_detection.loop_detection_code</span> <span class="kn">import</span> <span class="n">get_rule_set</span><span class="p">,</span> <span class="n">get_aliases</span>
-<span class="kn">from</span> <span class="nn">tests.testing_helpers</span> <span class="kn">import</span> <span class="n">create_collection_rules</span><span class="p">,</span> <span class="n">generate_fw_tables</span><span class="p">,</span> <span class="n">print_from_fw_tables</span>
+<span class="kn">from</span> <span class="nn">loop_detection.generation.gen</span> <span class="kn">import</span> <span class="n">create_collection_rules</span><span class="p">,</span> <span class="n">generate_fw_tables</span><span class="p">,</span> <span class="n">print_from_fw_tables</span>
 </pre></div>
 </div>
 </div>
 <p>Take the following fowarding tables</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># each node has a base rule H but the actions for the base rule can differ</span>
@@ -496,8 +496,8 @@ document.write(`
 <span class="n">fw_tables</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;R5&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
                 <span class="p">(</span><span class="s1">&#39;H2&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">)]</span>
 
-<span class="n">fw_tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[(</span><span class="s1">&#39;R7&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
-                 <span class="p">(</span><span class="s1">&#39;R6&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span>
+<span class="n">fw_tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[(</span><span class="s1">&#39;R6&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;R7&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
                  <span class="p">(</span><span class="s1">&#39;H3&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">)]</span>
 
 <span class="n">fw_tables</span>
@@ -505,7 +505,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -516,11 +516,13 @@ document.write(`
   (&#39;H0&#39;, [0, 5], None)],
  1: [(&#39;R4&#39;, [2, 4], 3), (&#39;H1&#39;, [0, 5], None)],
  2: [(&#39;R5&#39;, [0, 4], 3), (&#39;H2&#39;, [0, 5], None)],
- 3: [(&#39;R7&#39;, [2, 3], 1), (&#39;R6&#39;, [4, 5], None), (&#39;H3&#39;, [0, 5], None)]}
+ 3: [(&#39;R6&#39;, [4, 5], None), (&#39;R7&#39;, [2, 3], 1), (&#39;H3&#39;, [0, 5], None)]}
 </pre></div></div>
 </div>
+<p>The keys of the dictionnary are the names of the nodes/routers of the network. Each node is associated with a list of rules, where each rule has a name, the set of headers it matches and an action. The action can be the name of another node in case of forwarding, or <code class="docutils literal notranslate"><span class="pre">None</span></code> in case of a drop.</p>
+<p>Let’s see how the networks looks like.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_from_fw_tables</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
@@ -531,13 +533,14 @@ document.write(`
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_loop_tutorial_4_0.png" src="../_images/tutorials_loop_tutorial_4_0.png" />
+<img alt="../_images/tutorials_loop_tutorial_6_0.png" src="../_images/tutorials_loop_tutorial_6_0.png" />
 </div>
 </div>
-<p>There is a loop between 1 and 3.</p>
-<p>Let us check the rule set of the network.</p>
+<p>The network is a directed graph where an edge between node A and node B means that there is a rule in node A whose action is to forward to node B.</p>
+<p>Note that in our example, there is a loop between 1 and 3.</p>
+<p>Let us collect all the rules found in our forwarding tables.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rule_set</span> <span class="o">=</span> <span class="n">get_rule_set</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
@@ -546,7 +549,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -565,13 +568,38 @@ document.write(`
 </pre></div></div>
 </div>
 <p>Note that H0, H1, H2, H3 are different names for the same rule (at different locations).</p>
-<p>Remove such redundant copies.</p>
+<p><code class="docutils literal notranslate"><span class="pre">get_aliases</span></code>gives all the possible names for a given rule.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aliases</span> <span class="o">=</span> <span class="n">get_aliases</span><span class="p">(</span><span class="n">rule_set</span><span class="p">)</span>
-<span class="n">R</span> <span class="o">=</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="n">aliases</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{[1, 5]: {&#39;R1&#39;},
+ [1, 4]: {&#39;R2&#39;},
+ [0, 1]: {&#39;R3&#39;},
+ [0, 5]: {&#39;H0&#39;, &#39;H1&#39;, &#39;H2&#39;, &#39;H3&#39;},
+ [2, 4]: {&#39;R4&#39;},
+ [0, 4]: {&#39;R5&#39;},
+ [2, 3]: {&#39;R7&#39;},
+ [4, 5]: {&#39;R6&#39;}}
+</pre></div></div>
+</div>
+<p>Let us remove redundant copies of the same rule. This will speed up the equivalence class computation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
 <span class="n">unique_count</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">aliases</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
 <span class="n">R_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">R</span><span class="p">:</span>
@@ -583,7 +611,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -600,7 +628,7 @@ document.write(`
 </div>
 <p>Let us get the uncovered combinations generated by these rules.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UC</span> <span class="o">=</span> <span class="n">get_UC</span><span class="p">(</span><span class="n">R_set</span><span class="p">)</span>
@@ -625,7 +653,7 @@ H0 &amp; R1 &amp; R6 , value = [4, 5]
 </div>
 <p>Now, let us run the loop verification.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">loop_detection</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
@@ -634,7 +662,7 @@ H0 &amp; R1 &amp; R6 , value = [4, 5]
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -642,8 +670,10 @@ H0 &amp; R1 &amp; R6 , value = [4, 5]
 [([2, 3], [[1, 3]])]
 </pre></div></div>
 </div>
+<p>The output is a list of tuples, where the first element is the combination of rules creating loops, and the second element is a list of cycles associated to the combination.</p>
+<p>Let us parse the output to have a more readable result.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -670,7 +700,7 @@ Nodes involved: {1, 3}
 </div>
 <p>Now, let’s test on a random network.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gen_fw_tables</span> <span class="o">=</span> <span class="n">generate_fw_tables</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_range</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
@@ -712,27 +742,27 @@ Fowarding table:
 
 Node 0
 (&#39;H0&#39;, [0, 10], None)
-(&#39;R00&#39;, [1, 8], None)
+(&#39;R00&#39;, [9, 10], 3)
 
 Node 1
-(&#39;H1&#39;, [0, 10], None)
-(&#39;R01&#39;, [3, 9], 3)
-(&#39;R11&#39;, [7, 8], 0)
+(&#39;H1&#39;, [0, 10], 2)
+(&#39;R01&#39;, [8, 9], None)
+(&#39;R11&#39;, [2, 6], 4)
 
 Node 2
-(&#39;H2&#39;, [0, 10], None)
+(&#39;H2&#39;, [0, 10], 0)
 (&#39;R02&#39;, [4, 8], None)
-(&#39;R12&#39;, [1, 1], 0)
-(&#39;R22&#39;, [8, 8], None)
+(&#39;R12&#39;, [1, 6], 4)
 
 Node 3
-(&#39;H3&#39;, [0, 10], None)
-(&#39;R03&#39;, [0, 1], 4)
-(&#39;R13&#39;, [5, 10], 2)
+(&#39;H3&#39;, [0, 10], 2)
+(&#39;R03&#39;, [6, 7], 2)
+(&#39;R13&#39;, [6, 9], 4)
+(&#39;R23&#39;, [1, 3], 0)
 
 Node 4
 (&#39;H4&#39;, [0, 10], None)
-(&#39;R04&#39;, [5, 8], None)
+(&#39;R04&#39;, [2, 4], None)
 
 ------------------------------------------------------------
 Graph of the whole network
@@ -742,7 +772,7 @@ Graph of the whole network
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_loop_tutorial_16_1.png" src="../_images/tutorials_loop_tutorial_16_1.png" />
+<img alt="../_images/tutorials_loop_tutorial_23_1.png" src="../_images/tutorials_loop_tutorial_23_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -751,14 +781,20 @@ Graph of the whole network
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 ------------------------------------------------------------
-0 loops detected
+1 loops detected
 
 Details:
 
+Atom: H0 &amp; R13 &amp; R00 , value = [9, 9]
+1 loops
+Nodes involved:
+Cycle 1 : [0, 3, 2]
+
 </pre></div></div>
 </div>
+<p>A second random example:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gen_fw_tables</span> <span class="o">=</span> <span class="n">generate_fw_tables</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_range</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
@@ -799,30 +835,29 @@ Details:
 Fowarding table:
 
 Node 0
-(&#39;H0&#39;, [0, 10], 4)
-(&#39;R00&#39;, [6, 8], 4)
+(&#39;H0&#39;, [0, 10], None)
+(&#39;R00&#39;, [5, 6], None)
 
 Node 1
-(&#39;H1&#39;, [0, 10], None)
-(&#39;R01&#39;, [0, 3], 0)
-(&#39;R11&#39;, [2, 6], None)
-(&#39;R21&#39;, [3, 6], 0)
+(&#39;H1&#39;, [0, 10], 3)
+(&#39;R01&#39;, [4, 6], 3)
+(&#39;R11&#39;, [4, 8], 0)
 
 Node 2
 (&#39;H2&#39;, [0, 10], None)
-(&#39;R02&#39;, [6, 8], 3)
-(&#39;R12&#39;, [6, 10], None)
-(&#39;R22&#39;, [9, 10], None)
+(&#39;R02&#39;, [0, 4], 0)
+(&#39;R12&#39;, [0, 8], 4)
 
 Node 3
 (&#39;H3&#39;, [0, 10], None)
-(&#39;R03&#39;, [1, 1], 0)
-(&#39;R13&#39;, [5, 10], 1)
-(&#39;R23&#39;, [4, 8], None)
+(&#39;R03&#39;, [3, 4], 1)
+(&#39;R13&#39;, [5, 6], 1)
+(&#39;R23&#39;, [3, 4], 1)
 
 Node 4
 (&#39;H4&#39;, [0, 10], None)
-(&#39;R04&#39;, [2, 5], 3)
+(&#39;R04&#39;, [3, 7], 3)
+(&#39;R14&#39;, [1, 3], 2)
 
 ------------------------------------------------------------
 Graph of the whole network
@@ -832,7 +867,7 @@ Graph of the whole network
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_loop_tutorial_17_1.png" src="../_images/tutorials_loop_tutorial_17_1.png" />
+<img alt="../_images/tutorials_loop_tutorial_25_1.png" src="../_images/tutorials_loop_tutorial_25_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -841,14 +876,30 @@ Graph of the whole network
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 ------------------------------------------------------------
-1 loops detected
+5 loops detected
 
 Details:
 
-Atom: H0 &amp; R13 &amp; R11 &amp; R04 , value = [5, 5]
+Atom: H0 &amp; R12 &amp; R02 &amp; R04 &amp; R11 , value = [4, 4]
 1 loops
 Nodes involved:
-Cycle 1 : [0, 4, 3, 1]
+Cycle 1 : [1, 3]
+
+Atom: H0 &amp; R12 &amp; R02 &amp; R04 &amp; R14 , value = [3, 3]
+2 loops
+Nodes involved:
+Cycle 1 : [2, 4]
+Cycle 2 : [1, 3]
+
+Atom: H0 &amp; R12 &amp; R04 &amp; R11 &amp; R01 &amp; R00 , value = [5, 6]
+1 loops
+Nodes involved:
+Cycle 1 : [1, 3]
+
+Atom: H0 &amp; R12 &amp; R02 &amp; R14 , value = [1, 3]
+1 loops
+Nodes involved:
+Cycle 1 : [2, 4]
 
 </pre></div></div>
 </div>
