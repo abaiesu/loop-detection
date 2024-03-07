@@ -1,61 +1,84 @@
-# -*- coding: utf-8 -*-
-"""
-Copyright Antonia Baies
-baies.antonia@gmail.com
-
-This file is part of Loop Detection.
-"""
-
-from loop_detection.algo.combination import Combination
-from loop_detection.set_rep.range import Range
-from loop_detection.set_rep.wildcardexpr import WildcardExpr
-from loop_detection.set_rep.multifield import MultiField
-from typing import Set, Union, Iterable, Tuple
+from loop_detection.classes import Range, WildcardExpr, Combination, MultiField, Trie, Node, build_interval_tree
+from typing import Set, Union, Iterable
 
 NodeName = Union[int, str]
 Action = Union[NodeName, None]
 Rule = Union[Range, WildcardExpr, MultiField]
 
 
-def add_rule(r: Combination, UC: Set[Combination]) -> Set[Combination]:
+def common_elements(list_of_sets: Iterable[Set]) -> Set[Rule]:
+
+    """" Returns the set of elements present in all the sets provided as input"""
+
+    if not list_of_sets:
+        return set()
+
+    common_set = set(list_of_sets[0])
+
+    for s in list_of_sets[1:]:
+        common_set = common_set.intersection(s)
+
+    return common_set
+
+
+def get_intersections(trees: Iterable[Node], r: Rule) -> Set[Rule]:
+
+    """" Returns a set of rules which intersect with the query rules r"""
+
+    result = []
+    for tree in trees:
+        inters = tree.find_intersects(r)
+        result.append(inters)
+    ret = common_elements(result)
+    return ret
+
+def add_rule(r, UC, trees):
     """"
     Adds a rule to a set of uncovered combinations and updates the set following the more efficient algorithm
 
     Parameters
     ----------
-    r : Combination
-        new rule to add, wrapped with the Combination attributes
-    UC : set[Combinations]
-        current set of uncovered combinations
+    r : Rule
+        new rule to add
+    UC : set
+        current set of Combination instances
+    trees : list
+        list of the trees for each dimension (trie, interval trees)
 
     Returns
     -------
-    set[Combination]
-        new set of uncovered combinations
+    set
+        new set of Combination instances
     """
 
     if len(UC) == 0:
-        r.cont.add(r)
+        #r.cont.add(r)
+        r.cont.append(r)
         UC.add(r)
-        return UC
+        for tree in trees:
+            tree.add_to_tree(r)
+        return UC#, trees
 
     ############################### PARENT COMPUTATION ##################################
 
     new = set()  # combinations c&r that aren't present in UC yet
-    incl = set()  # all combinations included in r (= combinations that involve r)
+    incl = set()  # all combinations that include r
 
-    inter = {c for c in UC if
-             (c & r).rule.empty_flag == 0}  # get all the combinations which intersect with the new rule
-    inter_sorted = sorted(inter, key=lambda c: c.rule.get_card())  # sort by non-decreasing cardinality
+    if len(trees) == 1:
+        inter = trees[0].find_intersects(r)  # only a range or only a wildcard
+    else:
+        inter = get_intersections(trees, r)  # a multifield : we must go through each dimension
 
-    for c in inter_sorted:  # for each comb in inter, starting from the smallest
+    inter = sorted(inter, key=lambda c: c.rule.get_card())  # sort by non-decreasing cardinality
+
+    for c in inter:  # for each comb in inter, starting from the smallest
         cc = c & r  # get the intersection with r
-        if cc not in incl:  # if cc not already in the combinations included in r
+        if cc not in incl:  # if cc not already in the combis included in r
             if cc not in UC:
                 UC.add(cc)
-                new.add(cc)  # to keep track of the newly generated combinations
+                new.add(cc)  # to keep track of the newly generated combis
             else:
-                for elem in UC:  # cc already in UC, retrieve the corresponding element
+                for elem in UC:  # cc already in UC, retreive the corresonding element
                     if elem == cc:
                         cc = elem
                         break
@@ -63,75 +86,115 @@ def add_rule(r: Combination, UC: Set[Combination]) -> Set[Combination]:
             incl.add(cc)
 
         else:  # cc already in present in incl, then the parent is the one set previously
-            for elem in incl:  # retrieve the combinations from incl, the last set version
+            for elem in incl:  # retreive the combi from incl, the last set version
                 if elem == cc:
                     cc = elem
                     break
             if not cc.parent < c:  # if the parent of cc is NOT included in c, then cc is covered
                 cc.covered = True
 
-    # remove the covered combinations from all lists
+    # remove the covered combis from all lists
     incl = {c for c in incl if not c.covered}
     new = {c for c in new if not c.covered}
     UC = {c for c in UC if not c.covered}
 
+    for uc in new:
+        for tree in trees:
+            tree.add_to_tree(uc)
+
     ################################# ATOM SIZE COMPUTATION ##################################
 
-    incl_sorted = sorted(incl, key=lambda c: c.rule.get_card())
-    for c in incl_sorted:  # for each combination that includes r
+    incl = sorted(incl, key=lambda c: c.rule.get_card())
+    for c in incl:  # for each combination that include r
         if c.atsize > 0:
-            if c in new and c.parent is not None:
+            if c in new:
                 c.parent.atsize -= c.atsize
                 c.sup = {c.parent}
                 c.sup.update(c.parent.sup)  # update sup
-                c.cont.update(c.parent.cont)  # update the cont : take the same container as the parent
+                #c.cont.update(c.parent.cont)  # update the cont : take the same container as the parent
+                c.cont += c.parent.cont
 
-            to_add = set([d & r for d in c.sup if
-                          d & r in incl and d & r != c])  # add in sup the intersection bewteen r and the elements of sup other than c itself
+            intersections = {d & r for d in c.sup}
+            to_add = {intersection for intersection in intersections - {c} if
+                      intersection in incl}  # add in sup the intersection bewteen r and the elements of sup other than c itself
             c.sup.update(to_add)
-            c.cont.add(r)  # add r as a container for c
+
+            #if len(r.comp) != 1: #we add a combination from a previous get_UC computation (valid when propagation is used)
+                #c.cont = c.cont | r.cont
+            #    c.cont += r.cont
+            #else:
+            #    #c.cont.add(r)  # add r as a container for c
+            c.cont.append(r)
             for d in c.sup:  # warning : these elements aren't refered too in UC, so we must retrive the equal (not same) combi from new
                 if d in new:
                     matching_elem = next((elem for elem in new if elem == d), None)
                     if matching_elem:
                         matching_elem.atsize -= c.atsize  # update the size in UC
 
-    UC = {uc for uc in UC if uc.atsize != 0}  # remove all covered combinations
+    for uc in UC.copy():
+        if uc.atsize == 0:
+            #print("remove", uc.get_name(), uc)
+            UC.remove(uc)
+            #print('after removing', [(u, u.get_name()) for u in UC])
+            for tree in trees:
+                #print("at size empty", uc.get_name(), uc)
+                tree.remove_from_tree(uc)
 
-    return UC
+    #print('before return', [i.get_name() for i in UC])
+
+    return UC#, trees
 
 
-def get_UC(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
-    """
-    Returns the set of uncovered combinations associated to the set of rules given as input
+def get_UC(R):
+    """"
+    Returns the set of uncovered combinations using the algorithm with the best complexity (add_rule)
 
     Parameters
     ----------
-    R : array-like
-        list/set of tuples of the form : (name of the rules, rule)
+    R : iterable
+        list/set Rules
 
     Returns
     -------
-    set[Combination]
-
-    Examples
-    --------
-        >>> r1 = Range(0, 4)
-        >>> r2 = Range(1, 5)
-        >>> h = Range(0, 7)
-        >>> rules = [('h', h), ('r1',r1), ('r2', r2)]
-        >>> get_UC(rules)
-        {[0, 7], [0, 4], [1, 4], [1, 5]}
-        >>> [uc.get_name() for uc in get_UC(rules)]
-        ['h', 'h & r1', 'h & r1 & r2', 'h & r2']
+    set
+        set of Combination instances
 
     """
 
-    UC: Set[Combination] = set()
+    UC = set()
 
-    # sort R by decreasing cardinality to start by the base rule = H
-    R = sorted(R, key=lambda rule: rule[1].get_card(), reverse=True)
+    max_rule = max(R, key=lambda rule: rule.get_card())
+    R.remove(max_rule)
+    R.insert(0, max_rule)
 
-    for r in R:
-        UC = add_rule(Combination(r[1], comp=[r[0]]), UC)
+    # create the skeleton of the trees, but don't add elements yet
+
+    if isinstance(R[0], Range): # range : one interval tree for the whole collection
+        trees = [build_interval_tree(R, keep_empty=True)]
+
+    elif isinstance(R[0], WildcardExpr): # wc : one trie for the whole collection
+        wc_len = len(R[0].expr)
+        trees = [Trie(key=None, depth=0, l=wc_len + 1)]
+
+    elif isinstance(R[0], MultiField):  # multifield : one trie and multiple interval trees
+        num_r = 0
+        num_wc = 0
+        wc_len = 0
+        for rule in R[0].rules:
+            if isinstance(rule, Range):
+                num_r += 1
+            else:
+                num_wc += 1
+                wc_len = len(rule.expr)
+
+        trees = [build_interval_tree(R, keep_empty=True, axis=i) for i in range(num_r)]
+        if num_wc == 1:
+            trees.append(Trie(key=None, depth=0, l=wc_len + 1))
+
+    else:
+        raise ValueError('Invalid Class ', type(R[0]))
+
+    for i, r in enumerate(R):
+        UC = add_rule(Combination(r, comp={r.name}), UC, trees)
+
     return UC

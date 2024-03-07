@@ -1,8 +1,8 @@
-from loop_detection.algo.combination import Combination
-from loop_detection.set_rep.range import Range
+from loop_detection.classes import Combination
+from loop_detection import Range
 
 def get_UC_naive(R):
-    R = [Combination(r[1], comp=[r[0]]) for r in R]
+    R = [Combination(r, comp={r.name}) for r in R]
 
     ##################### GET ALL COMBINATIONS (INCREMENTALLY) ###################
 

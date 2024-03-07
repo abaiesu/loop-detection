@@ -21,9 +21,7 @@ def test_inter():
     assert inter.start == 15
     assert inter.end == 20
     r3 = Range(30, 40)
-    r4 = WildcardExpr('*')
     assert (r2 & r3).empty_flag == 1  # emptiness
-    assert (r1 & r4).empty_flag == 0  # non-emptiness
 
 
 def test_card():
@@ -42,8 +40,6 @@ def test_incl():
     assert (r1 < r2) == False
     assert (r2 < r3) == True
     assert (r3 < r3) == True
-    r4 = WildcardExpr('*')
-    assert (r3 < r4) == True
     r5 = r1 & r2 #is empty
     assert r5.empty_flag == 1
     assert (r2 < r5) == False

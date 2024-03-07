@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "loop-detection"
-version = "0.1.0"
+version = "0.1.1"
 description = "Detects loops in a network from its forwarding tables"
 authors = ["Antonia Baies <baies.antonia@gmail.com>"]
 repository = "https://github.com/abaiesu/loop-detection"

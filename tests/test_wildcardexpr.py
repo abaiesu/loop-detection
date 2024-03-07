@@ -13,29 +13,29 @@ def test_failure():
 
 def test_is_member():
     r1 = WildcardExpr("01*1")
-    r2 = WildcardExpr("*")
-    assert r1.is_member("0111") == True
-    assert r1.is_member("0100") == False
-    assert (r2.is_member("000001") == True)
+    r2 = WildcardExpr("****")
+    assert r1.is_member("0111")
+    assert not r1.is_member("0100")
+    assert not r2.is_member("000001")
     r6 = WildcardExpr("01")
     r7 = WildcardExpr("10")
     r8 = r6 & r7
-    assert r8.is_member("10") == False
-    assert r7.is_member("10001") == False
+    assert not r8.is_member("10")
+    assert not r7.is_member("10001")
 
 
 def test_inter():
     r1 = WildcardExpr("01*1")
     r2 = WildcardExpr("*101")
     inter = r1 & r2
-    assert isinstance(inter, WildcardExpr) == True  # test closure
+    assert isinstance(inter, WildcardExpr) # test closure
     assert inter.expr == "0101"
     r3 = WildcardExpr("*011")
     result = r1 & r3
     assert result.empty_flag == 1
     assert result.get_card() == 0
-    assert (result.expr == "0101") == False
-    r4 = WildcardExpr("*")
+    assert not (result.expr == "0101")
+    r4 = WildcardExpr("***")
     r5 = WildcardExpr("*01")
     assert (r4 & r5) == r5
     with pytest.raises(ValueError):

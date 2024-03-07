@@ -6,10 +6,7 @@ baies.antonia@gmail.com
 This file is part of Loop Detection.
 """
 
-from loop_detection.algo.combination import Combination
-from loop_detection.set_rep.range import Range
-from loop_detection.set_rep.wildcardexpr import WildcardExpr
-from loop_detection.set_rep.multifield import MultiField
+from loop_detection.classes import Range, WildcardExpr, Combination, MultiField
 from typing import Set, Union, Iterable, Tuple
 
 NodeName = Union[int, str]
@@ -72,8 +69,8 @@ def get_UC_basic(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
     UC: Set[Combination] = set()  # this will sort the uncovered combinations
 
     # sort R by decreasing cardinality to start by the base rule = H
-    R = sorted(R, key=lambda rule: rule[1].get_card(), reverse=True)
+    R = sorted(R, key=lambda rule: rule.get_card(), reverse=True)
 
     for r in R:
-        UC = basic_add_rule(Combination(r[1], comp=[r[0]]), UC)
+        UC = basic_add_rule(Combination(r, comp={r.name}), UC)
     return UC
