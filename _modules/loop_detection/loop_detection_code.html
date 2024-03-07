@@ -510,7 +510,7 @@ document.write(`
         <span class="k">return</span> <span class="kc">True</span>
 
 
-<span class="k">def</span> <span class="nf">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Rule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;If the ruleset is made out of Multifields, we merge all the wildcard expressions into one</span>
 <span class="sd">    First the range rules, then the unique wildcard expression</span>
 
@@ -541,24 +541,10 @@ document.write(`
                         <span class="n">res_wc</span> <span class="o">+=</span> <span class="n">rule</span><span class="o">.</span><span class="n">expr</span>
                 <span class="n">RR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MultiField</span><span class="p">(</span><span class="n">range_rules</span> <span class="o">+</span> <span class="p">[</span><span class="n">WildcardExpr</span><span class="p">(</span><span class="n">res_wc</span><span class="p">)],</span> <span class="n">r</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">RR</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The function must be applied on a collection of Multifield rules&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">R</span>
-
-
-<span class="k">def</span> <span class="nf">get_uc_to_test</span><span class="p">(</span><span class="n">UC_per_node</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Combination</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Combination</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get rid of duplicates : same combination created by the same rules</span>
-<span class="sd">    After propagation, multiple nodes may have the same combinations&quot;&quot;&quot;</span>
-
-    <span class="n">UC_to_test</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">uc</span> <span class="ow">in</span> <span class="n">UC_per_node</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">uc</span><span class="p">:</span>
-            <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">UC_to_test</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">ele</span><span class="o">.</span><span class="n">cont</span> <span class="o">==</span> <span class="n">atom</span><span class="o">.</span><span class="n">cont</span><span class="p">:</span>
-                    <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
-                <span class="n">UC_to_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">UC_to_test</span>
 
 
 <span class="k">def</span> <span class="nf">get_rule_dict</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]:</span>
