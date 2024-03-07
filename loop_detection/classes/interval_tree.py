@@ -1,7 +1,7 @@
 from loop_detection.classes.range import Range
 from loop_detection.classes.combination import Combination
 from loop_detection.classes.multifield import MultiField
-from typing import Iterable, Union
+from typing import Iterable, Union, List
 
 
 class Node:
@@ -124,11 +124,28 @@ class Node:
                 self.right.remove_from_tree(to_remove)
 
 
-def build_interval_tree(intervals: Iterable[Union[Range, MultiField]],
+def build_interval_tree(intervals: List[Union[Range, MultiField]],
                         keep_empty=False, axis=0, endpoints=None):
 
-    #if not intervals:
-    #    return None
+    """
+    Stores the intervals in the input collection in an interval tree
+
+    Parameters
+    ---------
+    intervals : List[Union[Range, MultiField]]
+        Collection of intervals
+    keep_empty : bool, default = False
+        If true, will build the skeleton of the tree, without adding intervals at the nodes/leaves
+    axis : int, default = 0
+        The axis along which to store the intervals (relevant if the intervals are Multifields)
+    endpoints : List[int], default = None
+        Used for induction
+
+    Returns
+    -------
+    Node
+
+    """
 
     if endpoints is None:
         starts = []

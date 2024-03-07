@@ -51,7 +51,8 @@ def highest_set_bit_exponent(binary_string):
 
 
 def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
-                            min_range=0, max_range=2 ** 32 - 1, wc_len=32, small_k=True, origin=None):
+                            min_range=0, max_range=2 ** 32 - 1, wc_len=32,
+                            small_k=False, origin=None):
     """"
     Returns a list of random rules
 
@@ -69,6 +70,11 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
         max end of the ranges
     wc_len : int, default = 6
         number of bits/characters in a wildcard expression
+    small_k : bool, default = False
+        whether to keep a low overlapping degree or not
+    origin : int | str | None, optional
+        name of the node to be associated with the produced collection
+
 
 
     Returns
@@ -114,10 +120,7 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
             for _ in range(wc_len):
                 s += random.choice(['*', '1', '0'])
             multif += [WildcardExpr(s)]
-        if len(multif) == 1:
-            rule = multif[0]
-        else:
-            rule = MultiField(multif)
+        rule = MultiField(multif)
         if origin:
             rule.name = f'R_{origin}_{i}'
         else:

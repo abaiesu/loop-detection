@@ -57,7 +57,7 @@ def check_same_type(collection: List) -> bool:
         return True
 
 
-def reformat_R(R: Iterable[Rule]) -> Iterable[Rule]:
+def reformat_R(R: List[Rule]) -> Iterable[Rule]:
     """If the ruleset is made out of Multifields, we merge all the wildcard expressions into one
     First the range rules, then the unique wildcard expression
 
@@ -88,24 +88,10 @@ def reformat_R(R: Iterable[Rule]) -> Iterable[Rule]:
                         res_wc += rule.expr
                 RR.append(MultiField(range_rules + [WildcardExpr(res_wc)], r.name))
             return RR
+    else:
+        raise ValueError('The function must be applied on a collection of Multifield rules')
 
     return R
-
-
-def get_uc_to_test(UC_per_node: Dict[NodeName, Iterable[Combination]]) -> List[Combination]:
-    """Get rid of duplicates : same combination created by the same rules
-    After propagation, multiple nodes may have the same combinations"""
-
-    UC_to_test = []
-    for uc in UC_per_node.values():
-        for atom in uc:
-            found = False
-            for ele in UC_to_test:
-                if ele.cont == atom.cont:
-                    found = True
-            if not found:
-                UC_to_test.append(atom)
-    return UC_to_test
 
 
 def get_rule_dict(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]]) -> Dict[str, Tuple[NodeName, Rule, Action]]:

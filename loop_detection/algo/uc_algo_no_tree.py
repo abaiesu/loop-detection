@@ -101,7 +101,7 @@ def add_rule(r: Combination, UC: Set[Combination]) -> Set[Combination]:
     return UC
 
 
-def get_UC(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
+def get_UC(R: Iterable[Rule]) -> Set[Combination]:
     """
     Returns the set of uncovered combinations associated to the set of rules given as input
 
