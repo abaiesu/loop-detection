@@ -541,8 +541,6 @@ document.write(`
                         <span class="n">res_wc</span> <span class="o">+=</span> <span class="n">rule</span><span class="o">.</span><span class="n">expr</span>
                 <span class="n">RR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MultiField</span><span class="p">(</span><span class="n">range_rules</span> <span class="o">+</span> <span class="p">[</span><span class="n">WildcardExpr</span><span class="p">(</span><span class="n">res_wc</span><span class="p">)],</span> <span class="n">r</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">RR</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The function must be applied on a collection of Multifield rules&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">R</span>
 
