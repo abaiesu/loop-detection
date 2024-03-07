@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>loop_detection &#8212; Loop Detection 0.1.0 documentation</title>
+    <title>loop_detection &#8212; Loop Detection 0.1.1 documentation</title>
   
   
   
@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -31,11 +31,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
-    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/documentation_options.js?v=a58bc63e"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -107,6 +107,7 @@
   <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
   
 
 <a class="navbar-brand logo" href="../index.html">
@@ -116,7 +117,7 @@
   
   
   
-    <p class="title logo__title">Loop Detection 0.1.0 documentation</p>
+    <p class="title logo__title">Loop Detection 0.1.1 documentation</p>
   
 </a></div>
     
@@ -126,7 +127,8 @@
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
+        <div class="navbar-item">
+<nav class="navbar-nav">
   <p class="sidebar-header-items__title"
      role="heading"
      aria-level="1"
@@ -208,6 +210,7 @@
       
         <div class="navbar-item navbar-persistent--container">
           
+
  <script>
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -221,6 +224,7 @@
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -253,6 +257,7 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
+
  <script>
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -286,7 +291,8 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
+          <div class="navbar-item">
+<nav class="navbar-nav">
   <p class="sidebar-header-items__title"
      role="heading"
      aria-level="1"
@@ -368,6 +374,7 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -399,7 +406,8 @@ document.write(`
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
@@ -469,38 +477,22 @@ document.write(`
 <h1>loop_detection<a class="headerlink" href="#loop-detection" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="loop_detection.loop_detection">
-<span class="sig-prename descclassname"><span class="pre">loop_detection.</span></span><span class="sig-name descname"><span class="pre">loop_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="range.html#loop_detection.Range" title="loop_detection.set_rep.range.Range"><span class="pre">Range</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr" title="loop_detection.set_rep.wildcardexpr.WildcardExpr"><span class="pre">WildcardExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="multifield.html#loop_detection.MultiField" title="loop_detection.set_rep.multifield.MultiField"><span class="pre">MultiField</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">early_stop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Combination</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/loop_detection/loop_detection_code.html#loop_detection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#loop_detection.loop_detection" title="Link to this definition">#</a></dt>
-<dd><p>Detects loops in a network from its forwarding tables</p>
+<span class="sig-prename descclassname"><span class="pre">loop_detection.</span></span><span class="sig-name descname"><span class="pre">loop_detection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_tables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="range.html#loop_detection.Range" title="loop_detection.classes.range.Range"><span class="pre">Range</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="wildcardexpr.html#loop_detection.WildcardExpr" title="loop_detection.classes.wildcardexpr.WildcardExpr"><span class="pre">WildcardExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="multifield.html#loop_detection.MultiField" title="loop_detection.classes.multifield.MultiField"><span class="pre">MultiField</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Combination</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/loop_detection/loop_detection_code.html#loop_detection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#loop_detection.loop_detection" title="Link to this definition">#</a></dt>
+<dd><p>Returns a list with tuples (atom, cycles) with the cycles induced by each atom</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>fw_tables</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – <p>The keys of the dictionary are the names of the nodes/routers.</p>
-<p>The values are the list of the rules present at the key node.</p>
-<p>The rules are in the following format : (name of the rule, rule, action).</p>
-</p></li>
-<li><p><strong>early_stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default = False</em>) – Whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)</p></li>
+<li><p><strong>fw_tables</strong> (<em>Dict</em><em>[</em><em>NodeName</em><em>, </em><em>List</em><em>[</em><em>Tuple</em><em>[</em><em>Rule</em><em>, </em><em>Action</em><em>]</em><em>]</em><em>]</em>) – dictionary that associates each node with its set of (rule, action) tuples</p></li>
+<li><p><strong>merge</strong> (<em>Bool</em><em>, </em><em>default = False</em>) – whether to merge the rules of the whole network or to only merge within strongly connected nodes</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>The items of the list are tuples of the form (atom, list of cycles)</p>
-<p>The cycles are lists with all the nodes involved.</p>
-<p>If early_stop, the returned value will be a list of length 1 with the first (atom, cycles) pair encountered</p>
-</p>
+<dd class="field-even"><p>cycles in the network, with the atom that induced them</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a></p>
+<dd class="field-odd"><p>List[Tuple[Combination, List[NodeName]]]</p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">example_tables</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">example_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;R1&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;R3&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;H0&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">example_tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[(</span><span class="s1">&#39;R4&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;H1&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">example_tables</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;R5&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;H2&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">example_tables</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[(</span><span class="s1">&#39;R7&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;R6&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;H3&#39;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="kc">None</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">loop_detection</span><span class="p">(</span><span class="n">example_tables</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="go">True</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </section>
@@ -513,7 +505,7 @@ document.write(`
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="get_uc.html"
@@ -543,6 +535,7 @@ document.write(`
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
   <div class="sidebar-secondary-item">
+
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
@@ -553,6 +546,7 @@ document.write(`
   </nav></div>
 
   <div class="sidebar-secondary-item">
+
   <div class="tocsection sourcelink">
     <a href="../_sources/reference/loop_detection.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -573,8 +567,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -582,6 +576,7 @@ document.write(`
     <div class="footer-items__start">
       
         <div class="footer-item">
+
   <p class="copyright">
     
       © Copyright 2023, Antonia Baies.
@@ -591,6 +586,7 @@ document.write(`
 </div>
       
         <div class="footer-item">
+
   <p class="sphinx-version">
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
@@ -603,8 +599,9 @@ document.write(`
   
     <div class="footer-items__end">
       
-        <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
 </p></div>
       
     </div>

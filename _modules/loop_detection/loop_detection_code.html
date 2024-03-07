@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>loop_detection.loop_detection_code &#8212; Loop Detection 0.1.0 documentation</title>
+    <title>loop_detection.loop_detection_code &#8212; Loop Detection 0.1.1 documentation</title>
   
   
   
@@ -17,12 +17,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -30,11 +30,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
-    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -104,6 +104,7 @@
   <div class="col-lg-3 navbar-header-items__start">
     
       <div class="navbar-item">
+
   
 
 <a class="navbar-brand logo" href="../../index.html">
@@ -113,7 +114,7 @@
   
   
   
-    <p class="title logo__title">Loop Detection 0.1.0 documentation</p>
+    <p class="title logo__title">Loop Detection 0.1.1 documentation</p>
   
 </a></div>
     
@@ -123,7 +124,8 @@
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item"><nav class="navbar-nav">
+        <div class="navbar-item">
+<nav class="navbar-nav">
   <p class="sidebar-header-items__title"
      role="heading"
      aria-level="1"
@@ -205,6 +207,7 @@
       
         <div class="navbar-item navbar-persistent--container">
           
+
  <script>
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -218,6 +221,7 @@
       
       
         <div class="navbar-item">
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -250,6 +254,7 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
+
  <script>
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -279,7 +284,8 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><nav class="navbar-nav">
+          <div class="navbar-item">
+<nav class="navbar-nav">
   <p class="sidebar-header-items__title"
      role="heading"
      aria-level="1"
@@ -361,6 +367,7 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -452,13 +459,10 @@ document.write(`
 <span class="sd">This file is part of Loop Detection.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-
+<span class="kn">from</span> <span class="nn">loop_detection.classes</span> <span class="kn">import</span> <span class="n">Range</span><span class="p">,</span> <span class="n">WildcardExpr</span><span class="p">,</span> <span class="n">Combination</span><span class="p">,</span> <span class="n">MultiField</span>
 <span class="kn">from</span> <span class="nn">loop_detection.algo.uc_algo</span> <span class="kn">import</span> <span class="n">get_UC</span>
-<span class="kn">from</span> <span class="nn">loop_detection.algo.combination</span> <span class="kn">import</span> <span class="n">Combination</span>
-<span class="kn">from</span> <span class="nn">loop_detection</span> <span class="kn">import</span> <span class="n">MultiField</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">WildcardExpr</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span>
 
 <span class="n">NodeName</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 <span class="n">Action</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
@@ -466,8 +470,24 @@ document.write(`
 
 
 <span class="k">def</span> <span class="nf">check_same_type</span><span class="p">(</span><span class="n">collection</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks if all the elements in the iterable are of the same type.</span>
-<span class="sd">    In the case of Multifield rules, it checks that each corresponding field has the same type &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks if all the elements in the iterable are of the same type.</span>
+<span class="sd">    In the case of Multifield rules, it checks that each corresponding field has the same type</span>
+
+<span class="sd">     &gt;&gt;&gt; R = [Range(0, 1), Range(4, 9), WildcardExpr(&#39;**1&#39;)]</span>
+<span class="sd">     &gt;&gt;&gt; check_same_type(R)</span>
+<span class="sd">     False</span>
+<span class="sd">     &gt;&gt;&gt; R = [MultiField([Range(0, 1), Range(4, 9)]), MultiField([WildcardExpr(&#39;**1&#39;), Range(7, 10)])]</span>
+<span class="sd">     &gt;&gt;&gt; check_same_type(R)</span>
+<span class="sd">     False</span>
+<span class="sd">     &gt;&gt;&gt; R = [MultiField([Range(0, 1), Range(4, 9)]), MultiField([Range(7, 10), Range(9, 10), Range(5, 5)])]</span>
+<span class="sd">     &gt;&gt;&gt; check_same_type(R)</span>
+<span class="sd">     False</span>
+<span class="sd">     &gt;&gt;&gt; R = [Range(0, 1), Range(4, 9)]</span>
+<span class="sd">     &gt;&gt;&gt; check_same_type(R)</span>
+<span class="sd">     True</span>
+
+<span class="sd">     &quot;&quot;&quot;</span>
 
     <span class="n">first_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">collection</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>  <span class="c1"># get the type of the first element in the collection</span>
     <span class="n">same_types</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">first_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">)</span>
@@ -476,7 +496,7 @@ document.write(`
     <span class="k">if</span> <span class="n">first_type</span> <span class="o">!=</span> <span class="n">MultiField</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># for multifields, check that all the fields are of the same type</span>
-        <span class="n">nb_inner_rules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span> <span class="c1">#first check that they have the same number of fields</span>
+        <span class="n">nb_inner_rules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span>  <span class="c1"># first check that they have the same number of fields</span>
         <span class="k">for</span> <span class="n">mf</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mf</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span> <span class="o">!=</span> <span class="n">nb_inner_rules</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
@@ -490,180 +510,204 @@ document.write(`
         <span class="k">return</span> <span class="kc">True</span>
 
 
-<span class="k">def</span> <span class="nf">get_rule_set</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Merges all the rules from the forwarding table into the same set</span>
+<span class="k">def</span> <span class="nf">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If the ruleset is made out of Multifields, we merge all the wildcard expressions into one</span>
+<span class="sd">    First the range rules, then the unique wildcard expression</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    fw_tables : dict</span>
-<span class="sd">        keys = name of the node/router</span>
-<span class="sd">        values = list of the rules present at the node</span>
-<span class="sd">        the rules are in the following format : (name : str, rule : Rule, action = None or name of the destination)</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    dict</span>
-<span class="sd">        the keys are the rule names : str, and the values are tuples of the form (start, value : Rule, action)</span>
-
+<span class="sd">    &gt;&gt;&gt; R = [MultiField([WildcardExpr(&#39;***&#39;), WildcardExpr(&#39;*11&#39;), Range(6, 10)])]</span>
+<span class="sd">    &gt;&gt;&gt; RR = reformat_R(R)</span>
+<span class="sd">    &gt;&gt;&gt; RR[0] == MultiField([Range(6, 10), WildcardExpr(&#39;****11&#39;)])</span>
+<span class="sd">    True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">MultiField</span><span class="p">):</span>  <span class="c1"># we assume that all the rules are of the same type</span>
+        <span class="n">num_r</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">num_wc</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>  <span class="c1"># count the number of range rule and wc rules</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">Range</span><span class="p">):</span>
+                <span class="n">num_r</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">num_wc</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">num_wc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># if there are more than 1 wc rules</span>
+            <span class="n">RR</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">:</span>
+                <span class="n">res_wc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># store all the wc rules</span>
+                <span class="n">range_rules</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># store all the range rules</span>
+                <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">Range</span><span class="p">):</span>
+                        <span class="n">range_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">res_wc</span> <span class="o">+=</span> <span class="n">rule</span><span class="o">.</span><span class="n">expr</span>
+                <span class="n">RR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MultiField</span><span class="p">(</span><span class="n">range_rules</span> <span class="o">+</span> <span class="p">[</span><span class="n">WildcardExpr</span><span class="p">(</span><span class="n">res_wc</span><span class="p">)],</span> <span class="n">r</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">RR</span>
+
+    <span class="k">return</span> <span class="n">R</span>
+
+
+<span class="k">def</span> <span class="nf">get_uc_to_test</span><span class="p">(</span><span class="n">UC_per_node</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Combination</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Combination</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get rid of duplicates : same combination created by the same rules</span>
+<span class="sd">    After propagation, multiple nodes may have the same combinations&quot;&quot;&quot;</span>
+
+    <span class="n">UC_to_test</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">uc</span> <span class="ow">in</span> <span class="n">UC_per_node</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">uc</span><span class="p">:</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">UC_to_test</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ele</span><span class="o">.</span><span class="n">cont</span> <span class="o">==</span> <span class="n">atom</span><span class="o">.</span><span class="n">cont</span><span class="p">:</span>
+                    <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+                <span class="n">UC_to_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">UC_to_test</span>
+
+
+<span class="k">def</span> <span class="nf">get_rule_dict</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]:</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Merges all the tables into a dictionary with the name of the rule and (source, rule, action)&quot;&quot;&quot;</span>
+
+    <span class="n">rule_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">fw_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  <span class="c1"># the name of the rule already exists in the rule set</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rule </span><span class="si">{</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> already exists in node </span><span class="si">{</span><span class="n">rule_set</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">rule_set</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rule</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">rule_set</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rule</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rules</span><span class="p">):</span>
+            <span class="n">rule_dict</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">rule_dict</span>
 
 
-<span class="k">def</span> <span class="nf">get_aliases</span><span class="p">(</span><span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Gets the dict of all names of a given rule</span>
+<span class="k">def</span> <span class="nf">get_R_per_subgraph</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]]):</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    rule_set : set</span>
-<span class="sd">        matches the output of get_rule_set</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">()</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    set</span>
-<span class="sd">        dictionary where the keys are rule values, and the values are sets of valid names : str</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
-    <span class="n">aliases</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">dests_per_node</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">fw_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">]</span>  <span class="c1"># take the rule-set for each forwarding (r, action) tuple</span>
+        <span class="n">dests_per_node</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">}</span>  <span class="c1"># keep track of the possible destinations</span>
 
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">rule_value</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">rule_value</span> <span class="ow">in</span> <span class="n">aliases</span><span class="p">:</span>
-            <span class="n">aliases</span><span class="p">[</span><span class="n">rule_value</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">aliases</span><span class="p">[</span><span class="n">rule_value</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dests_per_node</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">dd</span><span class="p">))</span>
 
-    <span class="k">return</span> <span class="n">aliases</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+
+    <span class="n">connected_subgraphs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">strongly_connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+
+    <span class="n">rule_sets</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">connected_subgraphs</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+            <span class="n">R</span> <span class="o">+=</span> <span class="n">fw_tables</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">]</span>
+        <span class="n">rule_sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rule_sets</span>
 
 
-<span class="k">def</span> <span class="nf">cycles_detection</span><span class="p">(</span><span class="n">UC</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Combination</span><span class="p">],</span>
-                     <span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]],</span>
-                     <span class="n">aliases</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
-                     <span class="n">early_stop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Combination</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">NodeName</span><span class="p">]]]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Detects cycles in the induced graph of each uncovered combination</span>
+<span class="k">def</span> <span class="nf">cycle_detection</span><span class="p">(</span><span class="n">UC_to_test</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Combination</span><span class="p">],</span> <span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Combination</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">NodeName</span><span class="p">]]]:</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    UC : set[Combinations]</span>
-<span class="sd">        set of all uncovered combinations, matches the output of get_UC</span>
-<span class="sd">    rule_set : set</span>
-<span class="sd">        matches output of get_rule_set</span>
-<span class="sd">    aliases : dict</span>
-<span class="sd">        matches the output of get_aliases</span>
-<span class="sd">    early_stop : bool, default = False</span>
-<span class="sd">        whether you want to stop at the first cycle encountered (True) or you want all the cycles (False)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates from each UC in UC_to_test the forwarding graph of the UC and checks for cycles&quot;&quot;&quot;</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    list</span>
-<span class="sd">        the items of the list are tuples of the form (atom : Combination, list of cycles)</span>
-<span class="sd">        the cycles are lists with all the nodes involved</span>
+    <span class="n">total_cycles</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="sd">        if early_stop == True, the returned value will be a list of length 1 with the first cycle encountered</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">loops</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">UC</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">cont</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># less or equal 2 containers = H + optionally another rule NO LOOP !</span>
-            <span class="k">continue</span>
+    <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">UC_to_test</span><span class="p">:</span>
 
         <span class="n">g</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">()</span>
 
         <span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="n">edges</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">atom</span><span class="o">.</span><span class="n">cont</span><span class="p">:</span>
-            <span class="n">names</span> <span class="o">=</span> <span class="n">aliases</span><span class="p">[</span><span class="n">rule</span><span class="o">.</span><span class="n">rule</span><span class="p">]</span>  <span class="c1"># get all the names of the rule</span>
-            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
-                <span class="n">start</span> <span class="o">=</span> <span class="n">rule_set</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># for each name, get the orgin node</span>
-                <span class="n">end</span> <span class="o">=</span> <span class="n">rule_set</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># the destination</span>
-                <span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># if not a drop</span>
-                    <span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
-                    <span class="n">edges</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>  <span class="c1"># create the edge</span>
+
+        <span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">atom</span><span class="o">.</span><span class="n">cont</span><span class="p">:</span>  <span class="c1"># for each rule containing the atom</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">rule_set</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># get the location</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">rule_set</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># get the action</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># if not a drop</span>
+                <span class="n">nodes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>  <span class="c1"># create the edge</span>
 
         <span class="n">g</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
         <span class="n">g</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
 
         <span class="n">cycles</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">simple_cycles</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">cycles</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">early_stop</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">[(</span><span class="n">atom</span><span class="p">,</span> <span class="n">cycles</span><span class="p">)]</span>
+            <span class="n">total_cycles</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">atom</span><span class="p">,</span> <span class="n">cycles</span><span class="p">))</span>
 
-            <span class="n">loops</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">atom</span><span class="p">,</span> <span class="n">cycles</span><span class="p">))</span>
-
-    <span class="k">return</span> <span class="n">loops</span>
+    <span class="k">return</span> <span class="n">total_cycles</span>
 
 
 <div class="viewcode-block" id="loop_detection">
 <a class="viewcode-back" href="../../reference/loop_detection.html#loop_detection.loop_detection">[docs]</a>
-<span class="k">def</span> <span class="nf">loop_detection</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]],</span> <span class="n">early_stop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> \
-    <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Combination</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">NodeName</span><span class="p">]]]]:</span>
+<span class="k">def</span> <span class="nf">loop_detection</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]],</span> <span class="n">merge</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Combination</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">NodeName</span><span class="p">]]]:</span>
+
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Detects loops in a network from its forwarding tables</span>
+<span class="sd">    Returns a list with tuples (atom, cycles) with the cycles induced by each atom</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    fw_tables : dict</span>
-<span class="sd">        The keys of the dictionary are the names of the nodes/routers.</span>
-
-<span class="sd">        The values are the list of the rules present at the key node.</span>
-
-<span class="sd">        The rules are in the following format : (name of the rule, rule, action).</span>
-<span class="sd">    early_stop : bool, default = False</span>
-<span class="sd">        Whether to stop at the first cycle encountered (True) or you want to wait for all the cycles (False)</span>
+<span class="sd">    fw_tables : Dict[NodeName, List[Tuple[Rule, Action]]]</span>
+<span class="sd">        dictionary that associates each node with its set of (rule, action) tuples</span>
+<span class="sd">    merge : Bool, default = False</span>
+<span class="sd">        whether to merge the rules of the whole network or to only merge within strongly connected nodes</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    list</span>
-<span class="sd">        The items of the list are tuples of the form (atom, list of cycles)</span>
-
-<span class="sd">        The cycles are lists with all the nodes involved.</span>
-
-<span class="sd">        If early_stop, the returned value will be a list of length 1 with the first (atom, cycles) pair encountered</span>
-
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-
-<span class="sd">    &gt;&gt;&gt; example_tables = {i : [] for i in range(4)}</span>
-<span class="sd">    &gt;&gt;&gt; example_tables[0] = [(&#39;R1&#39;, Range(1,5), 1), (&#39;R2&#39;, Range(1,4), 1), (&#39;R3&#39;, Range(0,1), None), (&#39;H0&#39;, Range(0,5), None)]</span>
-<span class="sd">    &gt;&gt;&gt; example_tables[1] =  [(&#39;R4&#39;, Range(2,4), 3), (&#39;H1&#39;, Range(0,5), None)]</span>
-<span class="sd">    &gt;&gt;&gt; example_tables[2] = [(&#39;R5&#39;, Range(0, 4), 3), (&#39;H2&#39;, Range(0,5), None)]</span>
-<span class="sd">    &gt;&gt;&gt; example_tables[3] =  [(&#39;R7&#39;, Range(2,3), 1), (&#39;R6&#39;, Range(4, 5), None), (&#39;H3&#39;, Range(0,5), None)]</span>
-<span class="sd">    &gt;&gt;&gt; len(loop_detection(example_tables)) &gt; 0</span>
-<span class="sd">    True</span>
+<span class="sd">    List[Tuple[Combination, List[NodeName]]]</span>
+<span class="sd">        cycles in the network, with the atom that induced them</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">rule_set</span> <span class="o">=</span> <span class="n">get_rule_set</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
-    <span class="n">aliases</span> <span class="o">=</span> <span class="n">get_aliases</span><span class="p">(</span><span class="n">rule_set</span><span class="p">)</span>
+    <span class="c1"># first check that the fw_tables are well-formed</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">fw_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
+            <span class="n">R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">check_same_type</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The rules don&#39;t all have the same format&quot;</span><span class="p">)</span>
 
-    <span class="n">R</span> <span class="o">=</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="c1"># reformat each rule</span>
+    <span class="n">Rs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dests</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">fw_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">des</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
+            <span class="n">des</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="n">Rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="n">dests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">des</span><span class="p">)</span>
 
-    <span class="c1"># remove duplicate rules (= different name but same rule)</span>
-    <span class="n">unique_count</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">aliases</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
-    <span class="n">R_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">R</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">unique_count</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">R_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
-            <span class="n">unique_count</span><span class="p">[</span><span class="n">rule</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">fw_tables_reformatted</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">dests</span><span class="p">,</span> <span class="n">Rs</span><span class="p">):</span>
+        <span class="n">fw_tables_reformatted</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">dd</span><span class="p">,</span> <span class="n">rr</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+            <span class="n">fw_tables_reformatted</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">rr</span><span class="p">,</span> <span class="n">dd</span><span class="p">))</span>
 
-    <span class="n">R_rules</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R_set</span><span class="p">]</span>  <span class="c1"># get a list of the rules alone to check for types</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">check_same_type</span><span class="p">(</span><span class="n">R_rules</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The rules of the network don&#39;t have the same type&quot;</span><span class="p">)</span>
+    <span class="c1"># run the loop detection</span>
+    <span class="n">rule_set</span> <span class="o">=</span> <span class="n">get_rule_dict</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
 
-    <span class="n">UC</span> <span class="o">=</span> <span class="n">get_UC</span><span class="p">(</span><span class="n">R_set</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">merge</span><span class="p">:</span>
+        <span class="n">cycles</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">Rs</span> <span class="o">=</span> <span class="n">get_R_per_subgraph</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">R</span> <span class="ow">in</span> <span class="n">Rs</span><span class="p">:</span>
+            <span class="n">UC</span> <span class="o">=</span> <span class="n">get_UC</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+            <span class="n">cycles</span> <span class="o">+=</span> <span class="n">cycle_detection</span><span class="p">(</span><span class="n">UC</span><span class="p">,</span> <span class="n">rule_set</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cycles</span>
 
-    <span class="k">return</span> <span class="n">cycles_detection</span><span class="p">(</span><span class="n">UC</span><span class="p">,</span> <span class="n">rule_set</span><span class="p">,</span> <span class="n">aliases</span><span class="p">,</span> <span class="n">early_stop</span><span class="p">)</span></div>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rule_set</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        <span class="n">UC</span> <span class="o">=</span> <span class="n">get_UC</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cycle_detection</span><span class="p">(</span><span class="n">UC</span><span class="p">,</span> <span class="n">rule_set</span><span class="p">)</span></div>
+
+
+
+
 
 </pre></div>
 
@@ -674,7 +718,7 @@ document.write(`
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
 </div>
                 </footer>
@@ -694,8 +738,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -703,6 +747,7 @@ document.write(`
     <div class="footer-items__start">
       
         <div class="footer-item">
+
   <p class="copyright">
     
       © Copyright 2023, Antonia Baies.
@@ -712,6 +757,7 @@ document.write(`
 </div>
       
         <div class="footer-item">
+
   <p class="sphinx-version">
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
@@ -724,8 +770,9 @@ document.write(`
   
     <div class="footer-items__end">
       
-        <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
 </p></div>
       
     </div>
