@@ -32,7 +32,7 @@ def test_one_d_example_algo(one_d_example):
     assert set(UC_n) == set(UC_algo)
 
 
-############# TEST ON RANDOM RULES 1D #################
+############# TEST ON RANDOM RULES 1D ################
 
 @pytest.fixture
 def one_d_random():
