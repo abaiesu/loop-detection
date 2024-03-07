@@ -1,6 +1,7 @@
 from loop_detection.algo.basic_uc_algo import get_UC_basic
 from loop_detection.algo.uc_algo_no_tree import get_UC as get_UC_no_tree
 from loop_detection import Range, MultiField, get_UC
+from loop_detection.loop_detection_code import reformat_R
 from loop_detection.generation.gen import create_collection_rules
 from tests.testing_helpers import get_UC_naive
 import random
@@ -94,6 +95,7 @@ def test_two_d_example(two_d_example):
 def five_d_random():
     n = random.randint(5, 20)
     R = create_collection_rules(n, num_fields_wc=2, num_fields_r=3)
+    R = reformat_R(R)
     return R
 
 

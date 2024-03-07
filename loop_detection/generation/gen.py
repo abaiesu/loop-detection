@@ -75,25 +75,24 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
     origin : int | str | None, optional
         name of the node to be associated with the produced collection
 
-
-
     Returns
     -------
     list
-        list of tuples of the form (str, Rule), where str is the name of the rule
 
     """
 
     R = []
 
     # build the whole space
-    H = MultiField([Range(min_range, max_range) for _ in range(num_fields_r)]  # add all the range fields
-                   + [WildcardExpr('*' * wc_len) for _ in range(num_fields_wc)])  # add all the wildcard fields
+    if num_fields_r == 1 and num_fields_wc == 0:
+        H = Range(min_range, max_range)
+    elif num_fields_r == 0 and num_fields_wc == 1:
+        H = WildcardExpr('*' * wc_len)
+    else:
+        H = MultiField([Range(min_range, max_range) for _ in range(num_fields_r)]  # add all the range fields
+                        + [WildcardExpr('*' * wc_len) for _ in range(num_fields_wc)])  # add all the wildcard fields
 
-    if len(H.rules) == 1:
-        H = H.rules[0]
-        H.name = 'H'
-
+    H.name = 'H'
     R.append(H)
 
     for i in range(num_rules):
@@ -120,7 +119,10 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
             for _ in range(wc_len):
                 s += random.choice(['*', '1', '0'])
             multif += [WildcardExpr(s)]
-        rule = MultiField(multif)
+        if len(multif) == 1:
+            rule = multif[0]
+        else:
+            rule = MultiField(multif)
         if origin:
             rule.name = f'R_{origin}_{i}'
         else:
@@ -131,6 +133,7 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
 
 
 def generate_fw_tables(nb_nodes, max_range=10, small_k=False, m=16, p_max=2 / 3):
+
     """Returns a random forwarding table with nb_nodes nodes"""
 
     fw_tables = {i: [] for i in range(nb_nodes)}

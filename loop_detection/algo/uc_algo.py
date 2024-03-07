@@ -69,6 +69,7 @@ def add_rule(r, UC, trees):
     else:
         inter = get_intersections(trees, r)  # a multifield : we must go through each dimension
 
+
     inter = sorted(inter, key=lambda c: c.rule.get_card())  # sort by non-decreasing cardinality
 
     for c in inter:  # for each comb in inter, starting from the smallest

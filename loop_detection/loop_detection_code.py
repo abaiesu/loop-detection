@@ -88,8 +88,6 @@ def reformat_R(R: List[Rule]) -> Iterable[Rule]:
                         res_wc += rule.expr
                 RR.append(MultiField(range_rules + [WildcardExpr(res_wc)], r.name))
             return RR
-    else:
-        raise ValueError('The function must be applied on a collection of Multifield rules')
 
     return R
 
