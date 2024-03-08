@@ -81,12 +81,15 @@ def reformat_R(R: List[Rule]) -> List[Rule]:
             for r in R:
                 res_wc = ''  # store all the wc rules
                 range_rules = []  # store all the range rules
-                for rule in r.rules:
-                    if isinstance(rule, Range):
-                        range_rules.append(rule)
-                    else:
-                        res_wc += rule.expr
-                RR.append(MultiField(range_rules + [WildcardExpr(res_wc)], r.name))
+                if isinstance(r, MultiField):
+                    for rule in r.rules:
+                        if isinstance(rule, Range):
+                            range_rules.append(rule)
+                        else:
+                            res_wc += rule.expr
+                    RR.append(MultiField(range_rules + [WildcardExpr(res_wc)], r.name))
+                else:
+                    raise ValueError("All the rules from the collection must be of the same type")
             return RR
 
         return R

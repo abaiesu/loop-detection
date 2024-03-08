@@ -85,11 +85,11 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
 
     # build the whole space
     if num_fields_r == 1 and num_fields_wc == 0:
-        H = Range(min_range, max_range)
+        H: Rule = Range(min_range, max_range)
     elif num_fields_r == 0 and num_fields_wc == 1:
-        H = WildcardExpr('*' * wc_len)
+        H: Rule = WildcardExpr('*' * wc_len)
     else:
-        H = MultiField([Range(min_range, max_range) for _ in range(num_fields_r)]  # add all the range fields
+        H: Rule = MultiField([Range(min_range, max_range) for _ in range(num_fields_r)]  # add all the range fields
                         + [WildcardExpr('*' * wc_len) for _ in range(num_fields_wc)])  # add all the wildcard fields
 
     H.name = 'H'
