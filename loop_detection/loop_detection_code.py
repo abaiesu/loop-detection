@@ -88,8 +88,8 @@ def reformat_R(R: List[Rule]) -> Iterable[Rule]:
                         res_wc += rule.expr
                 RR.append(MultiField(range_rules + [WildcardExpr(res_wc)], r.name))
             return RR
-
-    return R
+    else:
+        return R
 
 
 def get_rule_dict(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]]) -> Dict[str, Tuple[NodeName, Rule, Action]]:

@@ -96,7 +96,7 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
     R.append(H)
 
     for i in range(num_rules):
-        multif = []
+        multif: List[Rule] = []
         for j in range(num_fields_r):  # create the range fields
             if small_k:
                 if np.log2(max_range + 1) != int(np.log2(max_range + 1)):
@@ -119,9 +119,8 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
             for _ in range(wc_len):
                 s += random.choice(['*', '1', '0'])
             multif += [WildcardExpr(s)]
-        if len(multif) == 1:
-            rule: Union[Range, WildcardExpr] = multif[0]
-        else:
+        rule: Rule = multif[0]
+        if len(multif) != 1:
             rule: MultiField = MultiField(multif)
         if origin:
             rule.name = f'R_{origin}_{i}'
