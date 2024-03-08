@@ -558,8 +558,8 @@ document.write(`
 
     <span class="c1">################################# ATOM SIZE COMPUTATION ##################################</span>
 
-    <span class="n">incl</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">incl</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">get_card</span><span class="p">()))</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">incl</span><span class="p">:</span>  <span class="c1"># for each combination that include r</span>
+    <span class="n">incl_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">incl</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">get_card</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">incl_sorted</span><span class="p">:</span>  <span class="c1"># for each combination that include r</span>
         <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">atsize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">new</span><span class="p">:</span>
                 <span class="n">c</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">atsize</span> <span class="o">-=</span> <span class="n">c</span><span class="o">.</span><span class="n">atsize</span>
