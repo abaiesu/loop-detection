@@ -510,7 +510,7 @@ document.write(`
         <span class="k">return</span> <span class="kc">True</span>
 
 
-<span class="k">def</span> <span class="nf">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MultiField</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Rule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;If the ruleset is made out of Multifields, we merge all the wildcard expressions into one</span>
 <span class="sd">    First the range rules, then the unique wildcard expression</span>
 
@@ -592,7 +592,7 @@ document.write(`
     <span class="k">return</span> <span class="n">rule_sets</span>
 
 
-<span class="k">def</span> <span class="nf">cycle_detection</span><span class="p">(</span><span class="n">UC_to_test</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Combination</span><span class="p">],</span> <span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Combination</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">NodeName</span><span class="p">]]]:</span>
+<span class="k">def</span> <span class="nf">cycle_detection</span><span class="p">(</span><span class="n">UC_to_test</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Combination</span><span class="p">],</span> <span class="n">rule_set</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Combination</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">NodeName</span><span class="p">]]]:</span>
 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates from each UC in UC_to_test the forwarding graph of the UC and checks for cycles&quot;&quot;&quot;</span>
 
