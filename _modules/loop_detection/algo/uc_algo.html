@@ -452,14 +452,14 @@ document.write(`
                   
   <h1>Source code for loop_detection.algo.uc_algo</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">loop_detection.classes</span> <span class="kn">import</span> <span class="n">Range</span><span class="p">,</span> <span class="n">WildcardExpr</span><span class="p">,</span> <span class="n">Combination</span><span class="p">,</span> <span class="n">MultiField</span><span class="p">,</span> <span class="n">Trie</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">build_interval_tree</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="n">NodeName</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 <span class="n">Action</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 <span class="n">Rule</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Range</span><span class="p">,</span> <span class="n">WildcardExpr</span><span class="p">,</span> <span class="n">MultiField</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">common_elements</span><span class="p">(</span><span class="n">list_of_sets</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Set</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">common_elements</span><span class="p">(</span><span class="n">list_of_sets</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Set</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&quot; Returns the set of elements present in all the sets provided as input&quot;&quot;&quot;</span>
 
@@ -558,7 +558,7 @@ document.write(`
 
     <span class="c1">################################# ATOM SIZE COMPUTATION ##################################</span>
 
-    <span class="n">incl</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">incl</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">get_card</span><span class="p">())</span>
+    <span class="n">incl</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">incl</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">get_card</span><span class="p">()))</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">incl</span><span class="p">:</span>  <span class="c1"># for each combination that include r</span>
         <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">atsize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">new</span><span class="p">:</span>
