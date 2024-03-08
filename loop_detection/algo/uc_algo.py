@@ -105,8 +105,8 @@ def add_rule(r, UC, trees):
 
     ################################# ATOM SIZE COMPUTATION ##################################
 
-    incl = set(sorted(incl, key=lambda c: c.rule.get_card()))
-    for c in incl:  # for each combination that include r
+    incl_sorted = sorted(incl, key=lambda c: c.rule.get_card())
+    for c in incl_sorted:  # for each combination that include r
         if c.atsize > 0:
             if c in new:
                 c.parent.atsize -= c.atsize

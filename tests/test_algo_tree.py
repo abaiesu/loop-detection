@@ -44,7 +44,6 @@ def brute_vs_tree(num_fields_wc, num_fields_r, start, end, step,
 
             if check_output:
                 if UC != UC_tree:
-                    #raise ValueError("Both versions don't output the same")
                     return False
 
 
@@ -74,5 +73,4 @@ def test():
     assert brute_vs_tree(num_fields_wc=2, num_fields_r=3, start=100, end=500, step=100, check_output=True)
     # small k
     assert brute_vs_tree(num_fields_wc=0, num_fields_r=1, start=1, end=10, step=1, check_output=True, small_k=False)
-
 
