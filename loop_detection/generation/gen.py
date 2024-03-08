@@ -120,9 +120,9 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
                 s += random.choice(['*', '1', '0'])
             multif += [WildcardExpr(s)]
         if len(multif) == 1:
-            rule = multif[0]
+            rule: Union[Range, WildcardExpr] = multif[0]
         else:
-            rule = MultiField(multif)
+            rule: MultiField = MultiField(multif)
         if origin:
             rule.name = f'R_{origin}_{i}'
         else:

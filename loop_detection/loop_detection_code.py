@@ -57,7 +57,7 @@ def check_same_type(collection: List) -> bool:
         return True
 
 
-def reformat_R(R: List[MultiField]) -> Iterable[Rule]:
+def reformat_R(R: List[Rule]) -> Iterable[Rule]:
     """If the ruleset is made out of Multifields, we merge all the wildcard expressions into one
     First the range rules, then the unique wildcard expression
 
@@ -139,7 +139,7 @@ def get_R_per_subgraph(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]]):
     return rule_sets
 
 
-def cycle_detection(UC_to_test: List[Combination], rule_set: Dict[str, Tuple[NodeName, Rule, Action]]) -> List[Tuple[Combination, List[NodeName]]]:
+def cycle_detection(UC_to_test: Iterable[Combination], rule_set: Dict[str, Tuple[NodeName, Rule, Action]]) -> List[Tuple[Combination, List[NodeName]]]:
 
     """Creates from each UC in UC_to_test the forwarding graph of the UC and checks for cycles"""
 
