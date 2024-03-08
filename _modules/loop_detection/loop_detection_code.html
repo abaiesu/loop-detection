@@ -510,7 +510,7 @@ document.write(`
         <span class="k">return</span> <span class="kc">True</span>
 
 
-<span class="k">def</span> <span class="nf">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Rule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MultiField</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Rule</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;If the ruleset is made out of Multifields, we merge all the wildcard expressions into one</span>
 <span class="sd">    First the range rules, then the unique wildcard expression</span>
 
@@ -586,8 +586,8 @@ document.write(`
         <span class="n">R</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
             <span class="n">R</span> <span class="o">+=</span> <span class="n">fw_tables</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-        <span class="n">R</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">]</span>
-        <span class="n">rule_sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="n">R_clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">]</span>
+        <span class="n">rule_sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R_clean</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">rule_sets</span>
 
@@ -663,8 +663,8 @@ document.write(`
         <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
             <span class="n">des</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">R</span> <span class="o">=</span> <span class="n">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
-        <span class="n">Rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="n">RR</span> <span class="o">=</span> <span class="n">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="n">Rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RR</span><span class="p">)</span>
         <span class="n">dests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">des</span><span class="p">)</span>
 
     <span class="n">fw_tables_reformatted</span> <span class="o">=</span> <span class="p">{}</span>
