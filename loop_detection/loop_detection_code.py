@@ -57,7 +57,7 @@ def check_same_type(collection: List) -> bool:
         return True
 
 
-def reformat_R(R: List[Rule]) -> Iterable[Rule]:
+def reformat_R(R: List[Rule]) -> List[Rule]:
     """If the ruleset is made out of Multifields, we merge all the wildcard expressions into one
     First the range rules, then the unique wildcard expression
 
@@ -88,6 +88,9 @@ def reformat_R(R: List[Rule]) -> Iterable[Rule]:
                         res_wc += rule.expr
                 RR.append(MultiField(range_rules + [WildcardExpr(res_wc)], r.name))
             return RR
+
+        return R
+
     else:
         return R
 
