@@ -57,7 +57,7 @@ def check_same_type(collection: List) -> bool:
         return True
 
 
-def reformat_R(R: List[Rule]) -> Iterable[Rule]:
+def reformat_R(R: List[MultiField]) -> Iterable[Rule]:
     """If the ruleset is made out of Multifields, we merge all the wildcard expressions into one
     First the range rules, then the unique wildcard expression
 
@@ -133,8 +133,8 @@ def get_R_per_subgraph(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]]):
         R = []
         for n in graph:
             R += fw_tables[n]
-        R = [r[0] for r in R]
-        rule_sets.append(R)
+        R_clean = [r[0] for r in R]
+        rule_sets.append(R_clean)
 
     return rule_sets
 
@@ -208,8 +208,8 @@ def loop_detection(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]], merge: 
         for r in rules:
             des.append(r[1])
             R.append(r[0])
-        R = reformat_R(R)
-        Rs.append(R)
+        RR = reformat_R(R)
+        Rs.append(RR)
         dests.append(des)
 
     fw_tables_reformatted = {}

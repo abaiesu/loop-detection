@@ -81,7 +81,7 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
 
     """
 
-    R = []
+    R : List[Rule] = []
 
     # build the whole space
     if num_fields_r == 1 and num_fields_wc == 0:
@@ -132,11 +132,11 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
     return R
 
 
-def generate_fw_tables(nb_nodes, max_range=10, small_k=False, m=16, p_max=2 / 3):
+def generate_fw_tables(nb_nodes, max_range=10, small_k=False, m=16, p_max=2 / 3) -> Dict[NodeName, List[Tuple[Rule, Action]]]:
 
     """Returns a random forwarding table with nb_nodes nodes"""
 
-    fw_tables = {i: [] for i in range(nb_nodes)}
+    fw_tables : Dict[NodeName, List[Tuple[Rule, Action]]] = {i: [] for i in range(nb_nodes)}
 
     for node in fw_tables.keys():
 

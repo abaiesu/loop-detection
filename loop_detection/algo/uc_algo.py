@@ -146,7 +146,7 @@ def add_rule(r, UC, trees):
     return UC#, trees
 
 
-def get_UC(R):
+def get_UC(R: List[Rule]) -> Set[Combination]:
     """"
     Returns the set of uncovered combinations using the algorithm with the best complexity (add_rule)
 
@@ -162,7 +162,7 @@ def get_UC(R):
 
     """
 
-    UC = set()
+    UC: Set[Combination] = set()
 
     max_rule = max(R, key=lambda rule: rule.get_card())
     R.remove(max_rule)

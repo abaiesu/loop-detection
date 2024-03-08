@@ -51,7 +51,7 @@ def basic_add_rule(r: Combination, UC: Set[Combination]):
     return UC
 
 
-def get_UC_basic(R: Iterable[Tuple[str, Rule]]) -> Set[Combination]:
+def get_UC_basic(R: Iterable[Rule]) -> Set[Combination]:
     """"
     Returns the set of uncovered combinations using the basic algorithm (add_rule_basic)
 
