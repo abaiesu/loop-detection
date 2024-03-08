@@ -81,19 +81,21 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
 
     """
 
-    R : List[Rule] = []
+    R: List[Rule] = []
 
     # build the whole space
     if num_fields_r == 1 and num_fields_wc == 0:
-        H: Rule = Range(min_range, max_range)
+        R.append(Range(min_range, max_range))
     elif num_fields_r == 0 and num_fields_wc == 1:
-        H: Rule = WildcardExpr('*' * wc_len)
+        R.append(WildcardExpr('*' * wc_len))
     else:
-        H: Rule = MultiField([Range(min_range, max_range) for _ in range(num_fields_r)]  # add all the range fields
-                        + [WildcardExpr('*' * wc_len) for _ in range(num_fields_wc)])  # add all the wildcard fields
+        R.append(MultiField([Range(min_range, max_range) for _ in range(num_fields_r)]  # add all the range fields
+                        + [WildcardExpr('*' * wc_len) for _ in range(num_fields_wc)]))  # add all the wildcard fields
 
-    H.name = 'H'
-    R.append(H)
+    if origin:
+        R[0].name = f'H_{origin}'
+    else:
+        R[0].name = 'H'
 
     for i in range(num_rules):
         multif: List[Rule] = []
@@ -119,14 +121,21 @@ def create_collection_rules(num_rules, num_fields_wc=2, num_fields_r=3,
             for _ in range(wc_len):
                 s += random.choice(['*', '1', '0'])
             multif += [WildcardExpr(s)]
-        rule: Rule = multif[0]
+
         if len(multif) != 1:
-            rule: MultiField = MultiField(multif)
-        if origin:
-            rule.name = f'R_{origin}_{i}'
+            rule_a = MultiField(multif)
+            if origin:
+                rule_a.name = f'R_{origin}_{i}'
+            else:
+                rule_a.name = f'R_{i}'
+            R.append(rule_a)
         else:
-            rule.name = f'R_{i}'
-        R.append(rule)
+            rule_b = multif[0]
+            if origin:
+                rule_b.name = f'R_{origin}_{i}'
+            else:
+                rule_b.name = f'R_{i}'
+            R.append(rule_b)
 
     return R
 

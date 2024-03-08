@@ -119,7 +119,6 @@ def get_R_per_subgraph(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]]):
 
     dests_per_node = {}
     for node, rules in fw_tables.items():
-        r = [rule[0] for rule in rules]  # take the rule-set for each forwarding (r, action) tuple
         dests_per_node[node] = {rule[1] for rule in rules}  # keep track of the possible destinations
 
     for n, d in dests_per_node.items():
@@ -218,7 +217,7 @@ def loop_detection(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]], merge: 
         Rs.append(RR)
         dests.append(des)
 
-    fw_tables_reformatted = {}
+    fw_tables_reformatted: Dict[NodeName, List[Tuple[Rule, Action]]] = {}
     for n, d, r in zip(nodes, dests, Rs):
         fw_tables_reformatted[n] = []
         for dd, rr in zip(d, r):
