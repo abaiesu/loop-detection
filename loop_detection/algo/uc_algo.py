@@ -1,12 +1,12 @@
 from loop_detection.classes import Range, WildcardExpr, Combination, MultiField, Trie, Node, build_interval_tree
-from typing import Set, Union, Iterable
+from typing import Set, Union, Iterable, List
 
 NodeName = Union[int, str]
 Action = Union[NodeName, None]
 Rule = Union[Range, WildcardExpr, MultiField]
 
 
-def common_elements(list_of_sets: Iterable[Set]) -> Set[Rule]:
+def common_elements(list_of_sets: List[Set]) -> Set[Rule]:
 
     """" Returns the set of elements present in all the sets provided as input"""
 
@@ -105,7 +105,7 @@ def add_rule(r, UC, trees):
 
     ################################# ATOM SIZE COMPUTATION ##################################
 
-    incl = sorted(incl, key=lambda c: c.rule.get_card())
+    incl = set(sorted(incl, key=lambda c: c.rule.get_card()))
     for c in incl:  # for each combination that include r
         if c.atsize > 0:
             if c in new:

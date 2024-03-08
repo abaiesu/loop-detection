@@ -124,7 +124,7 @@ class Node:
                 self.right.remove_from_tree(to_remove)
 
 
-def build_interval_tree(intervals: List[Union[Range, MultiField]],
+def build_interval_tree(intervals: List,
                         keep_empty=False, axis=0, endpoints=None):
 
     """
@@ -161,7 +161,7 @@ def build_interval_tree(intervals: List[Union[Range, MultiField]],
         endpoints = sorted(set(starts + ends))
 
     if keep_empty:
-        intervals = set()
+        intervals = []
 
     if len(endpoints) != 0:
         # Find the middle point
