@@ -676,7 +676,11 @@ document.write(`
     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">dests</span><span class="p">,</span> <span class="n">Rs</span><span class="p">):</span>
         <span class="n">fw_tables_reformatted</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">rr</span><span class="p">,</span> <span class="n">dd</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-            <span class="n">fw_tables_reformatted</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">rr</span><span class="p">,</span> <span class="n">dd</span><span class="p">))</span>
+            <span class="n">to_add</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">dd</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">fw_tables_reformatted</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">fw_tables_reformatted</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_add</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fw_tables_reformatted</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">to_add</span><span class="p">]</span>
 
     <span class="c1"># run the loop detection</span>
     <span class="n">rule_set</span> <span class="o">=</span> <span class="n">get_rule_dict</span><span class="p">(</span><span class="n">fw_tables</span><span class="p">)</span>
