@@ -221,7 +221,11 @@ def loop_detection(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]], merge: 
     for n, d, r in zip(nodes, dests, Rs):
         fw_tables_reformatted[n] = []
         for rr, dd in zip(r, d):
-            fw_tables_reformatted[n].append((rr, dd))
+            to_add: Tuple[Rule, Action] = (rr, dd)
+            if n in fw_tables_reformatted.keys():
+                fw_tables_reformatted[n].append(to_add)
+            else:
+                fw_tables_reformatted[n] = [to_add]
 
     # run the loop detection
     rule_set = get_rule_dict(fw_tables)
