@@ -530,7 +530,7 @@ document.write(`
                 <span class="n">num_wc</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="k">if</span> <span class="n">num_wc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># if there are more than 1 wc rules</span>
-            <span class="n">RR</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">RR</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Rule</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">R</span><span class="p">:</span>
                 <span class="n">res_wc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># store all the wc rules</span>
                 <span class="n">range_rules</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># store all the range rules</span>
@@ -658,7 +658,7 @@ document.write(`
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The rules don&#39;t all have the same format&quot;</span><span class="p">)</span>
 
     <span class="c1"># reformat each rule</span>
-    <span class="n">Rs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Rs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Rule</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">dests</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">rules</span> <span class="ow">in</span> <span class="n">fw_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -668,14 +668,14 @@ document.write(`
         <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
             <span class="n">des</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">R</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">RR</span> <span class="o">=</span> <span class="n">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="n">RR</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Rule</span><span class="p">]</span> <span class="o">=</span> <span class="n">reformat_R</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
         <span class="n">Rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RR</span><span class="p">)</span>
         <span class="n">dests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">des</span><span class="p">)</span>
 
     <span class="n">fw_tables_reformatted</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">dests</span><span class="p">,</span> <span class="n">Rs</span><span class="p">):</span>
         <span class="n">fw_tables_reformatted</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">dd</span><span class="p">,</span> <span class="n">rr</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">rr</span><span class="p">,</span> <span class="n">dd</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
             <span class="n">fw_tables_reformatted</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">rr</span><span class="p">,</span> <span class="n">dd</span><span class="p">))</span>
 
     <span class="c1"># run the loop detection</span>
