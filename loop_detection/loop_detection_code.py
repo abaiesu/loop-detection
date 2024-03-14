@@ -77,7 +77,7 @@ def reformat_R(R: List[Rule]) -> List[Rule]:
                 num_wc += 1
 
         if num_wc > 1:  # if there are more than 1 wc rules
-            RR = []
+            RR: List[Rule] = []
             for r in R:
                 res_wc = ''  # store all the wc rules
                 range_rules = []  # store all the range rules
@@ -203,7 +203,7 @@ def loop_detection(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]], merge: 
         raise ValueError("The rules don't all have the same format")
 
     # reformat each rule
-    Rs = []
+    Rs: List[List[Rule]] = []
     dests = []
     nodes = []
     for node, rules in fw_tables.items():
@@ -213,14 +213,14 @@ def loop_detection(fw_tables: Dict[NodeName, List[Tuple[Rule, Action]]], merge: 
         for r in rules:
             des.append(r[1])
             R.append(r[0])
-        RR = reformat_R(R)
+        RR: List[Rule] = reformat_R(R)
         Rs.append(RR)
         dests.append(des)
 
     fw_tables_reformatted: Dict[NodeName, List[Tuple[Rule, Action]]] = {}
     for n, d, r in zip(nodes, dests, Rs):
         fw_tables_reformatted[n] = []
-        for dd, rr in zip(d, r):
+        for rr, dd in zip(r, d):
             fw_tables_reformatted[n].append((rr, dd))
 
     # run the loop detection
