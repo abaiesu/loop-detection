@@ -672,6 +672,7 @@ document.write(`
         <span class="n">Rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RR</span><span class="p">)</span>
         <span class="n">dests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">des</span><span class="p">)</span>
 
+
     <span class="n">fw_tables_reformatted</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeName</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Rule</span><span class="p">,</span> <span class="n">Action</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">dests</span><span class="p">,</span> <span class="n">Rs</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">rr</span><span class="p">,</span> <span class="n">dd</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
